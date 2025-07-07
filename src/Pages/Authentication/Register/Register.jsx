@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../../Hooks/useAuth";
-import { TbFidgetSpinner } from 'react-icons/tb'
-import { Link } from 'react-router'
+import { TbFidgetSpinner } from "react-icons/tb";
+import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
+import SocialLogin from "../SocialLogin/SocialLogin";
 const Register = () => {
   const [profilePic, setProfilePic] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const { createUser, loading, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +18,16 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    setPasswordError("");
+    // password validation start
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (passwordPattern.test(password) == false) {
+      setPasswordError(
+        "Password Length must be at least 6 characters And Must have an Uppercase and a Lowercase letter"
+      );
+      return;
+    }
+    // password validation end
     createUser(email, password)
       .then((result) => {
         alert("User created");
@@ -25,8 +39,8 @@ const Register = () => {
         };
         updateUserProfile(userProfile)
           .then(() => {
-            
             console.log("profile name pic updated");
+            navigate(from);
           })
           .catch((error) => {
             console.log(error);
@@ -42,25 +56,23 @@ const Register = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Imgbb_Key}`;
+    const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_Imgbb_Key
+    }`;
     const res = await axios.post(imagUploadUrl, formData);
 
     setProfilePic(res.data.data.url);
   };
- 
-  //google sign in
-  const handleGoogleSignIn = () => {};
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to PlantNet</p>
+          <h1 className="my-3 text-4xl font-bold">Register</h1>
+          <p className="text-sm text-gray-400">Welcome to NewsPaper</p>
         </div>
         <form
           onSubmit={handleSubmit}
-          noValidate=""
-          action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-4">
@@ -82,7 +94,7 @@ const Register = () => {
                 Select Image:
               </label>
               <input
-              onChange={handleImageUpload}
+                onChange={handleImageUpload}
                 className="bg-gray-200 cursor-pointer"
                 type="file"
                 id="image"
@@ -121,7 +133,13 @@ const Register = () => {
               />
             </div>
           </div>
-
+          {/* password error */}
+          <div className="py-2 w-full">
+            {passwordError && (
+              <h2 className="text-red-600 text-xl ">{passwordError}</h2>
+            )}
+            *
+          </div>
           <div>
             <button
               type="submit"
@@ -135,21 +153,7 @@ const Register = () => {
             </button>
           </div>
         </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Signup with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
-        <div
-          onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
-          <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
-        </div>
+        <SocialLogin />
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an account?{" "}
           <Link

@@ -4,7 +4,16 @@ import useAuth from '../../Hooks/useAuth';
 
 
 const NavBar = () => {
-    const {user}=useAuth()
+    const {user,logOut}=useAuth()
+    const handleLogOut=()=>{
+        logOut()
+        .then(()=>{
+            alert("Log out success")
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
     const links=<>
     <li><NavLink>Home</NavLink></li>
     <li><NavLink>Add Articles</NavLink></li>
@@ -28,7 +37,7 @@ const NavBar = () => {
             <div className="auth max-w-7xl mx-auto">
                 
                 {
-                    !user && <Link to='/auth/login' className='btn btn-md btn-success'>Login</Link>
+                    user ? <button onClick={handleLogOut} className='btn btn-warning btn-md'>Log Out</button> : <Link to='/auth/login' className='btn btn-md btn-success'>Login</Link>
                 }
             </div>
         </div>
