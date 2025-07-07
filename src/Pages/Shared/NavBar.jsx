@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
 
@@ -12,7 +12,7 @@ const NavBar = () => {
     <li><NavLink>DashBoard(C)</NavLink></li>
     <li><NavLink>My Articles</NavLink></li>
     <li><NavLink>Premium Articles(C)</NavLink></li>
-    <li><NavLink>User Photo (c) here</NavLink></li>
+    <li><NavLink><img src={user?.photoURL} className='w-12 h-12 rounded-full' alt="" /></NavLink></li>
     </>
     
    
@@ -26,9 +26,9 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="auth max-w-7xl mx-auto">
-                <button className='btn btn-md btn-success'>Login</button>
+                
                 {
-                    user && <Link to='/auth/register'>Rg</Link>
+                    !user && <Link to='/auth/login' className='btn btn-md btn-success'>Login</Link>
                 }
             </div>
         </div>

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../../Hooks/useAuth";
+import { TbFidgetSpinner } from 'react-icons/tb'
+import { Link } from 'react-router'
+import axios from "axios";
 const Register = () => {
   const [profilePic, setProfilePic] = useState("");
-  const { createUser } = useAuth();
+  const { createUser, loading, updateUserProfile } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,21 +14,42 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    createUser(email, password)
+      .then((result) => {
+        alert("User created");
+        console.log(result);
+        // update user profile in firebase
+        const userProfile = {
+          displayName: name,
+          photoURL: profilePic,
+        };
+        updateUserProfile(userProfile)
+          .then(() => {
+            
+            console.log("profile name pic updated");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];
-    console.log(image);
 
     const formData = new FormData();
     formData.append("image", image);
 
-    const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_image_upload_key
-    }`;
+    const imagUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Imgbb_Key}`;
     const res = await axios.post(imagUploadUrl, formData);
 
     setProfilePic(res.data.data.url);
   };
+ 
+  //google sign in
+  const handleGoogleSignIn = () => {};
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -58,6 +82,7 @@ const Register = () => {
                 Select Image:
               </label>
               <input
+              onChange={handleImageUpload}
                 className="bg-gray-200 cursor-pointer"
                 type="file"
                 id="image"
