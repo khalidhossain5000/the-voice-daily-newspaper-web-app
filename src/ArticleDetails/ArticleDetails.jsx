@@ -7,8 +7,8 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 const ArticleDetails = () => {
   const { id } = useParams();
   const axiosSecure=useAxiosSecure()
-  // 👉 Fetch article data
-  const { data: article, isLoading } = useQuery({
+  // Fetch article data
+  const { data: article, isLoading,refetch } = useQuery({
     queryKey: ["article", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/articles/${id}`);
@@ -16,11 +16,13 @@ const ArticleDetails = () => {
     },
   });
 
-  // 👉 Increase view count (once)
+  //  Increase view count (once)
   useEffect(() => {
-    axiosSecure.patch(`/articles/${id}`);
+    axiosSecure.patch(`/articles/${id}`).then(()=>{
+      refetch
+    })
     
-  }, [axiosSecure,id]);
+  }, [axiosSecure,id,refetch]);
 
   if(isLoading) return <Loading/>
   console.log("thisis article",article);

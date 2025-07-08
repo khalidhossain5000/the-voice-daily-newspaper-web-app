@@ -7,6 +7,11 @@ import PrivateRoute from "../Routes/PrivateRoute";
 import AddArticle from "../Pages/AddArticle/AddArticle";
 import Home from "../Pages/Home/Home/Home";
 import ArticleDetails from "../ArticleDetails/ArticleDetails";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
+import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
+import AllArticles from "../Pages/DashBoard/AllArticles/AllArticles";
+import AddPublisher from "../Pages/DashBoard/AddPublisher/AddPublisher";
 
 export const router = createBrowserRouter([
   {
@@ -45,4 +50,28 @@ export const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path:'/dashboard',
+    element:<PrivateRoute>
+      <DashBoardLayout/>
+    </PrivateRoute>,
+    children:[
+      {
+        index:true,
+        Component:DashBoardHome
+      },
+      {
+        path:'all-users',
+        Component:AllUsers
+      },
+      {
+        path:'all-articles',
+        Component:AllArticles
+      },
+      {
+        path:'add-publisher',
+        Component:AddPublisher
+      }
+    ]
+  }
 ]);

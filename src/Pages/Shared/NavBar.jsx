@@ -17,27 +17,22 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to='/add-article'>Add Articles</NavLink>
+        <NavLink to="/add-article">Add Articles</NavLink>
       </li>
       <li>
         <NavLink>Subscription</NavLink>
       </li>
       <li>
-        <NavLink>DashBoard(C)</NavLink>
+        <NavLink to='/dashboard'>DashBoard(C)</NavLink>
       </li>
       <li>
         <NavLink>My Articles</NavLink>
       </li>
       <li>
         <NavLink>Premium Articles(C)</NavLink>
-      </li>
-      <li>
-        <NavLink>
-          <img src={user?.photoURL} className="w-12 h-12 rounded-full" alt="" />
-        </NavLink>
       </li>
     </>
   );
@@ -50,9 +45,20 @@ const NavBar = () => {
         </div>
         <div className="auth max-w-7xl mx-auto">
           {user ? (
-            <button onClick={handleLogOut} className="btn btn-warning btn-md">
-              Log Out
-            </button>
+            <div className="flex items-center gap-6">
+              
+                <NavLink>
+                  <img
+                    src={user?.photoURL}
+                    className="w-12 h-12 rounded-full"
+                    alt=""
+                  />
+                </NavLink>
+              
+              <button onClick={handleLogOut} className="btn btn-warning btn-md">
+                Log Out
+              </button>
+            </div>
           ) : (
             <Link to="/auth/login" className="btn btn-md btn-success">
               Login
@@ -61,40 +67,40 @@ const NavBar = () => {
         </div>
       </div>
       {/* MOBILE DRAWER STARTS */}
-      <div className="drawer drawer-end md:hidden">
+      <div className="drawer drawer-end md:hidden z-[9999]  ">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Page content here */}
-          <label
-            htmlFor="my-drawer-4"
-            className="drawer-button"
-          >
-            <GiHamburgerMenu size={30} className="mx-3"/>
+          <label htmlFor="my-drawer-4" className="drawer-button">
+            <GiHamburgerMenu size={30} className="mx-3" />
           </label>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side  ">
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <div className="flex flex-col justify-between min-h-full w-80 bg-base-200 p-4">
+          <div className="flex flex-col justify-between min-h-full w-80 bg-base-200 max-w-[300px] p-4">
             <div>
-            <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            {links}
-          </ul>
-          </div>
-          <div className=''>
-            {user ? (
-              <button onClick={handleLogOut} className="btn btn-warning btn-sm">
-                Log Out
-              </button>
-            ) : (
-              <Link to="/auth/login" className="btn btn-md btn-success">
-                Login
-              </Link>
-            )}
-          </div>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                {links}
+              </ul>
+            </div>
+            <div className="">
+              {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className="btn btn-warning btn-sm"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <Link to="/auth/login" className="btn btn-md btn-success">
+                  Login
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

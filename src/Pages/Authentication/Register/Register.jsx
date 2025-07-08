@@ -4,13 +4,16 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAxios from "../../../Hooks/useAxios";
 const Register = () => {
   const [profilePic, setProfilePic] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { createUser, loading, updateUserProfile } = useAuth();
+  const { createUser, loading, updateUserProfile,setUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from || "/";
+
+  const axiosInstance=useAxios()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,18 +23,33 @@ const Register = () => {
     const password = form.password.value;
     setPasswordError("");
     // password validation start
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
-    if (passwordPattern.test(password) == false) {
-      setPasswordError(
-        "Password Length must be at least 6 characters And Must have an Uppercase and a Lowercase letter"
-      );
-      return;
-    }
+    // const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    // if (passwordPattern.test(password) == false) {
+    //   setPasswordError(
+    //     "Password Length must be at least 6 characters And Must have an Uppercase and a Lowercase letter"
+    //   );
+    //   return;
+    // }
     // password validation end
     createUser(email, password)
       .then((result) => {
         alert("User created");
         console.log(result);
+        const user=result.user;
+        //SENDING USER INFO TO THE DB
+        const userInfo={
+          name,
+          email,
+          role:'user'//default role
+        }
+        axiosInstance.post('/users',userInfo)
+        .then((res)=>{
+          alert('user sended to db')
+          console.log(res);
+        })
+        .catch(error=>{
+          console.log(error);
+        })
         // update user profile in firebase
         const userProfile = {
           displayName: name,
@@ -40,6 +58,7 @@ const Register = () => {
         updateUserProfile(userProfile)
           .then(() => {
             console.log("profile name pic updated");
+            setUser({...user, displayName: name, photoURL: profilePic})
             navigate(from);
           })
           .catch((error) => {
