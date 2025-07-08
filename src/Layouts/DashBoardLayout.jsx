@@ -2,27 +2,35 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, Outlet } from "react-router";
 const DashBoardLayout = () => {
+    const handleDrawerClose = () => {
+  const drawerCheckbox = document.getElementById('my-drawer-2');
+  if (drawerCheckbox) {
+    drawerCheckbox.checked = false;
+  }
+};
+
     const links =<>
-    <li><NavLink to='/dashboard/all-users'>All users</NavLink></li>
-    <li><NavLink to='/dashboard/all-articles'>All Articles</NavLink></li>
-    <li><NavLink to='/dashboard/add-publisher'>All Publisher</NavLink></li>
+    <li><NavLink to='/dashboard/all-users' onClick={handleDrawerClose}>All users</NavLink></li>
+    <li><NavLink to='/dashboard/all-articles' onClick={handleDrawerClose}>All Articles</NavLink></li>
+    <li><NavLink to='/dashboard/add-publisher' onClick={handleDrawerClose}>Add Publisher</NavLink></li>
     </>
   return (
     <div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-start justify-center">
-          {/* Page content here */}
-          <div>
-            <Outlet></Outlet>
-          </div>
-
-          <label
+            <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
             <GiHamburgerMenu size={30} className="mx-3" />
           </label>
+          {/* Page content here */}
+          <div>
+            <Outlet></Outlet>
+          </div>
+
+          
         </div>
         <div className="drawer-side">
           <label
