@@ -3,12 +3,26 @@ import MainLayout from "../Layouts/MainLayout";
 import AuthLayout from "../Layouts/AuthLayout";
 import Register from "../Pages/Authentication/Register/Register";
 import Login from "../Pages/Authentication/LogIn/LogIn";
+import PrivateRoute from "../Routes/PrivateRoute";
+import AddArticle from "../Pages/AddArticle/AddArticle";
+import Home from "../Pages/Home/Home/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
-    children: [],
+    children: [
+      {
+        index:true,
+        Component:Home
+      },
+      {
+        path:'add-article',
+        element:<PrivateRoute>
+          <AddArticle/>
+        </PrivateRoute>
+      }
+    ],
   },
   {
     path: "/auth",

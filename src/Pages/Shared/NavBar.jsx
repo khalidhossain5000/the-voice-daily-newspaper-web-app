@@ -17,10 +17,10 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <NavLink>Add Articles</NavLink>
+        <NavLink to='/add-article'>Add Articles</NavLink>
       </li>
       <li>
         <NavLink>Subscription</NavLink>
