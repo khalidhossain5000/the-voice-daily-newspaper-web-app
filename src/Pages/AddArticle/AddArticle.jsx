@@ -4,9 +4,12 @@ import Select from "react-select";
 import { tagOptions } from "./Data/TagOptions";
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 const AddArticle = () => {
   const [articlePic, setArticlePic] = useState("");
   const axiosSecure = useAxiosSecure();
+  const {user}=useAuth()
+  console.log("this isuser",user);
   const {
     register,
     handleSubmit,
@@ -22,11 +25,15 @@ const AddArticle = () => {
   const onSubmit = (data) => {
     console.log("this is data", data);
     const articlesData = {
+      authorName:user?.displayName,
+      authorEmail:user?.email,
+      auhtorPhoto:user?.photoURL,
       ...data,
       articlePic,
       views: 0,
       status: "pending",
       createdAt: new Date().toISOString(),
+      isPremium:false
     };
 
     //SENDING DATA TO DB

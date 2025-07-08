@@ -24,7 +24,7 @@ const TrendingArticlesSlider = () => {
     },
   });
   if (isLoading) return <Loading />;
-  console.log(trendingArticles);
+//   console.log(trendingArticles);
   //attaching bg images to the data
   const sliderData = trendingArticles.map((article, i) => ({
     ...article,
