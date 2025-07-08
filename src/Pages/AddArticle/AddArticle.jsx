@@ -21,7 +21,7 @@ const AddArticle = () => {
       tags: [],
     },
   });
-
+ 
   const onSubmit = (data) => {
     console.log("this is data", data);
     const articlesData = {
