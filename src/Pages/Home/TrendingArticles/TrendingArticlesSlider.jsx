@@ -1,4 +1,5 @@
 import React from "react";
+import { Link  } from 'react-router';
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -40,7 +41,7 @@ const TrendingArticlesSlider = () => {
     >
       {sliderData.map((item, i) => (
         <SwiperSlide key={i}>
-          <divgit a
+          <div
             className="h-[100vh] lg:h-[calc(100vh-100px)] bg-cover bg-center flex items-end text-white p-9 lg:p-24"
             style={{ backgroundImage: `url(${item.bgImage})` }}
           >
@@ -55,9 +56,12 @@ const TrendingArticlesSlider = () => {
               >{tag?.label}</button>)}</h3>
               <p className="mt-2 text-blue-600">{item?.descriptions.slice(0, 150)}...</p>
               <p className="mt-2 text-sm text-red-600">Views: {item.views}</p>
+
+              <Link to={`/article/${item._id}`} className='btn btn-md btn-warning'>See More</Link>
             </div>
           </div>
         </SwiperSlide>
+        
       ))}
     </Swiper>
   );
