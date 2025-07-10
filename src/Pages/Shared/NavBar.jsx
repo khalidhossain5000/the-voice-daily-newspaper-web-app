@@ -23,7 +23,7 @@ const NavBar = () => {
         <NavLink to="/add-article">Add Articles</NavLink>
       </li>
       <li>
-        <NavLink>Subscription</NavLink>
+        <NavLink to='/subscription'>Subscription</NavLink>
       </li>
       <li>
         <NavLink to='/dashboard'>DashBoard(C)</NavLink>

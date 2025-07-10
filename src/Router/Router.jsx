@@ -12,6 +12,8 @@ import DashBoardHome from "../Pages/DashBoard/DashBoardHome/DashBoardHome";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AllArticles from "../Pages/DashBoard/AllArticles/AllArticles";
 import AddPublisher from "../Pages/DashBoard/AddPublisher/AddPublisher";
+import Subscription from "../Pages/Subscription/Subscription";
+import Payment from "../Pages/Subscription/PaymentPage/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,18 @@ export const router = createBrowserRouter([
         path:'article/:id',
         element:<PrivateRoute>
           <ArticleDetails/>
+        </PrivateRoute>
+      },
+      {
+        path:'subscription',
+        element:<PrivateRoute>
+          <Subscription/>
+        </PrivateRoute>
+      },
+      {
+        path:'payment',
+        element:<PrivateRoute>
+          <Payment/>
         </PrivateRoute>
       }
     ],
