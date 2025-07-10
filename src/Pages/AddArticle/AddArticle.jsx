@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import { tagOptions } from "./Data/TagOptions";
@@ -9,7 +10,20 @@ const AddArticle = () => {
   const [articlePic, setArticlePic] = useState("");
   const axiosSecure = useAxiosSecure();
   const {user}=useAuth()
-  console.log("this isuser",user);
+  //getting publisher data from db 
+    const { data: publishers = [], isLoading } = useQuery({
+    queryKey: ["publishers",user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/publishers");
+      return res.data;
+    },
+  });
+    //  Map data to making it usable format for react multi select
+  const publisherOptions = publishers.map((pub) => ({
+    value: pub._id, 
+    label: pub.publisherName,
+  }));
+
   const {
     register,
     handleSubmit,
@@ -23,7 +37,7 @@ const AddArticle = () => {
   });
  
   const onSubmit = (data) => {
-    console.log("this is data", data);
+    // console.log("this is data", data);
     const articlesData = {
       authorName:user?.displayName,
       authorEmail:user?.email,
@@ -118,10 +132,12 @@ const AddArticle = () => {
           render={({ field }) => (
             <Select
               {...field}
-              options={tagOptions}
+              options={publisherOptions}
               placeholder="Select Publisher"
               onChange={(selectedOption) => field.onChange(selectedOption)}
               value={field.value}
+              isLoading={isLoading}
+              className="text-black"
             />
           )}
         />
