@@ -67,7 +67,7 @@ const PaymentForm = () => {
         }
 
         await axiosSecure.patch(`/users/${user.email}`, {
-          premiumInfo: premiumUntil.toISOString(), // ✅ Always use ISO string
+          premiumInfo: premiumUntil.toISOString(), // 
         });
         alert("user updaed premium")
         //USER PREMIUM FIELD UPDATE ENDS HERE

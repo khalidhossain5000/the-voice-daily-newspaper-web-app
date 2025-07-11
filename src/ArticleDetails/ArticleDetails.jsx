@@ -18,14 +18,15 @@ const ArticleDetails = () => {
 
   //  Increase view count (once)
   useEffect(() => {
-    axiosSecure.patch(`/articles/${id}`).then(()=>{
-      refetch
+    axiosSecure.patch(`/articles/view/${id}`).then(()=>{
+      
     })
-    
+    .then(()=>refetch())
   }, [axiosSecure,id,refetch]);
 
   if(isLoading) return <Loading/>
-  console.log("thisis article",article);
+
+  // console.log("thisis article",article);
   return (
     <div>
       <h1 className="text-2xl text-center py-12 font-bold">

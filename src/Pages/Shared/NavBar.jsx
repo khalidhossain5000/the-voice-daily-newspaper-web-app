@@ -32,7 +32,7 @@ const NavBar = () => {
         <NavLink>My Articles</NavLink>
       </li>
       <li>
-        <NavLink>Premium Articles(C)</NavLink>
+        <NavLink to='/premium-articles'>Premium Articles(C)</NavLink>
       </li>
       <li>
         <NavLink to='/allArticles'>All Articles(C)</NavLink>

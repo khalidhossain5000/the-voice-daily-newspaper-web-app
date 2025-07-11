@@ -82,6 +82,31 @@ const AllArticles = () => {
       alert("Error occurred during decline.", err);
     }
   };
+
+  //MAKE ARTICLE PREMIUM RELATED APIS
+  const handleMakePremium = (articleId) => {
+  Swal.fire({
+    title: 'Make this article premium?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel',
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
+        if (res.data.modifiedCount > 0) {
+          Swal.fire('Success!', 'Article is now premium.', 'success');
+          refetch(); // রিফ্রেশ করলে নতুন data আসবে
+        } else {
+          Swal.fire('Failed', 'Could not update article.', 'error');
+        }
+      } catch (err) {
+        Swal.fire('Error!', 'Something went wrong.', 'error',err);
+      }
+    }
+  });
+};
 //ARTICLE DELETE REALTED API
 const handleDelete = (articleId) => {
   Swal.fire({
@@ -166,7 +191,7 @@ const handleDelete = (articleId) => {
                     <button onClick={()=>handleDelete(article._id)} className="btn btn-error btn-sm cursor-pointer">
                       Delete
                     </button>
-                    <button className="btn btn-warning btn-sm cursor-pointer">
+                    <button onClick={() => handleMakePremium(article._id)} className="btn btn-warning btn-sm cursor-pointer">
                       Make Premium
                     </button>
                   </div>
