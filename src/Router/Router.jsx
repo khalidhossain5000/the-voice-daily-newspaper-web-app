@@ -14,6 +14,7 @@ import AllArticles from "../Pages/DashBoard/AllArticles/AllArticles";
 import AddPublisher from "../Pages/DashBoard/AddPublisher/AddPublisher";
 import Subscription from "../Pages/Subscription/Subscription";
 import Payment from "../Pages/Subscription/PaymentPage/Payment";
+import PublicAllArticles from "../Pages/PublicAllArticles/PublicAllArticles";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
         element:<PrivateRoute>
           <Payment/>
         </PrivateRoute>
+      },
+      {
+        path:'allArticles',
+        Component:PublicAllArticles
       }
     ],
   },

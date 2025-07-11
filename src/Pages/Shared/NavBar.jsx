@@ -34,6 +34,9 @@ const NavBar = () => {
       <li>
         <NavLink>Premium Articles(C)</NavLink>
       </li>
+      <li>
+        <NavLink to='/allArticles'>All Articles(C)</NavLink>
+      </li>
     </>
   );
 
