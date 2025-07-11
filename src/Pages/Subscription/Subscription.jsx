@@ -15,8 +15,13 @@ const Subscription = () => {
   const selectedPlan = subscriptionOptions.find((p) => p.duration === selectedDuration);
 //   console.log("this is duration",selectedDuration,'selectd plsn',selectedPlan);
   const onSubmit = (data) => {
-    console.log("this is data of the plan form",data);
-    navigate('/payment')
+    console.log("this is data of the plan form",data,selectedPlan?.price);
+    navigate('/payment',{
+      state:{
+        amount:selectedPlan?.price,
+        duration:selectedPlan?.duration
+      }
+    })
   };
   return (
     <div>
