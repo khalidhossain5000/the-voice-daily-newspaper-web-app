@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useLocation } from "react-router";
+import useAuth from "../../../Hooks/useAuth";
+// import useAuth from "../../Hooks/useAuth";
 const PaymentForm = () => {
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
@@ -10,22 +12,21 @@ const PaymentForm = () => {
   const [error, setError] = useState("");
   const [processing, setProcessing] = useState(false);
 
-
   const location = useLocation();
-  const { amount } = location.state || {};
-  
-  
+  const { amount, duration } = location.state || {};
+//   console.log(duration);
+    const {user}=useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
-    const amountInCents=amount * 100
-    console.log("in centes",amountInCents);
+    const amountInCents = amount * 100;
+    console.log("in centes", amountInCents);
     setProcessing(true);
 
     // Step 1: Create payment intent on backend
     try {
       const { data } = await axiosSecure.post("/create-payment-intent", {
-        amountInCents // amount in cents
+        amountInCents, // amount in cents
       });
 
       const clientSecret = data.clientSecret;
@@ -53,23 +54,44 @@ const PaymentForm = () => {
       if (paymentIntent.status === "succeeded") {
         setError("");
         setProcessing(false);
+        //USER PREMIUM FIELD UPDATE START HERE
+        const now = new Date();
+        let premiumUntil;
+
+        if (duration === "1 minitue") {
+          premiumUntil = new Date(now.getTime() + 1 * 60 * 1000);
+        } else if (duration === '5 days') {
+          premiumUntil = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000);
+        } else if (duration === '10 days') {
+          premiumUntil = new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000);
+        }
+
+        await axiosSecure.patch(`/users/${user.email}`, {
+          premiumInfo: premiumUntil.toISOString(), // ✅ Always use ISO string
+        });
+        alert("user updaed premium")
+        //USER PREMIUM FIELD UPDATE ENDS HERE
         alert("Payment succeeded!");
         // Optional: redirect user or update UI
       }
     } catch (err) {
-      setError("Payment failed, try again.",err);
+      setError("Payment failed, try again.", err);
       setProcessing(false);
     }
   };
   return (
     <div className="max-w-xl mx-auto mt-12 bg-gray-200 p-9 rounded-2xl shadow-2xl">
-        <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" className="mt-14 w-full cursor-pointer btn bg-sky-500 text-white btn-md" disabled={!stripe || processing}>
-        {processing ? 'Processing...' : `Pay $${amount}`}
-      </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+      <form onSubmit={handleSubmit}>
+        <CardElement />
+        <button
+          type="submit"
+          className="mt-14 w-full cursor-pointer btn bg-sky-500 text-white btn-md"
+          disabled={!stripe || processing}
+        >
+          {processing ? "Processing..." : `Pay $${amount}`}
+        </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </form>
     </div>
   );
 };

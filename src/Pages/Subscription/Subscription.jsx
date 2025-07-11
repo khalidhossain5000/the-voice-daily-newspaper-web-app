@@ -2,26 +2,26 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 const subscriptionOptions = [
-  { duration: "1 Minute",  price: 49 },
-  { duration: "5 Days",  price: 99 },
-  { duration: "10 Days",  price: 149 },
-  
+  { duration: "1 minitue", price: 49 },
+  { duration: "5 days", price: 99 },
+  { duration: "10 days", price: 149 },
 ];
 
 const Subscription = () => {
-  const { register, handleSubmit,watch } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const navigate = useNavigate();
   const selectedDuration = watch("duration");
-  const selectedPlan = subscriptionOptions.find((p) => p.duration === selectedDuration);
-//   console.log("this is duration",selectedDuration,'selectd plsn',selectedPlan);
-  const onSubmit = (data) => {
-    console.log("this is data of the plan form",data,selectedPlan?.price);
-    navigate('/payment',{
-      state:{
-        amount:selectedPlan?.price,
-        duration:selectedPlan?.duration
-      }
-    })
+  const selectedPlan = subscriptionOptions.find(
+    (p) => p.duration === selectedDuration
+  );
+  //   console.log("this is duration",selectedDuration,'selectd plsn',selectedPlan);
+  const onSubmit = () => {
+    navigate("/payment", {
+      state: {
+        amount: selectedPlan?.price,
+        duration: selectedPlan?.duration,
+      },
+    });
   };
   return (
     <div>
@@ -45,19 +45,25 @@ const Subscription = () => {
         <section className="bg-white shadow-md p-6 rounded-xl">
           <h3 className="text-xl font-semibold mb-4">Choose Your Plan</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <select {...register("duration")} className="select w-full mb-4">
-              <option value="Select a duration" disabled defaultValue='Select a duration'>Select a duration</option>
-              {
-                subscriptionOptions.map((options,i)=><option 
-                key={i}
-                value={options.duration}>{options.duration}</option>)
-              }
-              
+            <select
+              {...register("duration")}
+              className="select w-full mb-4"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select a duration in Days
+              </option>
+              {subscriptionOptions.map((options, i) => (
+                <option key={i} value={options.duration}>
+                  {options.duration}
+                </option>
+              ))}
             </select>
             <p className="mb-4 font-bold">
-             Price: <span className="font-bold text-green-700">${
-                selectedPlan ? selectedPlan.price : 0
-                }</span>
+              Price:{" "}
+              <span className="font-bold text-green-700">
+                ${selectedPlan ? selectedPlan.price : 0}
+              </span>
             </p>
             <button type="submit" className="btn btn-primary w-full">
               Subscribe Now

@@ -41,7 +41,8 @@ const Register = () => {
           name,
           email,
           role:'user',//default role
-          profilePic
+          profilePic,
+          premiumInfo:null
         }
         axiosInstance.post('/users',userInfo)
         .then((res)=>{
