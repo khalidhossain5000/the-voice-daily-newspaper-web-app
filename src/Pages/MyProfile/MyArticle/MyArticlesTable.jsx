@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
-
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 const MyArticlesTable = ({ myArticle, serial, refetch }) => {
   const axiosSecure = useAxiosSecure();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [declineReason, setDeclineReason] = useState("");
+  const openModal = (reason) => {
+    setDeclineReason(reason);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setDeclineReason("");
+  };
   const handleArticleUpdate = (e) => {
     e.preventDefault();
   };
@@ -35,11 +47,7 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
       }
     });
   };
-  const {
-    articleTitle,
-    status,
-    isPremium,
-  } = myArticle;
+  const { articleTitle, isPremium } = myArticle;
   // console.log(myArticle);
   return (
     <tr>
@@ -55,8 +63,22 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
           Details
         </Link>
       </td>
-      <td>{status}</td>
-      
+      <td>
+        {myArticle.status === "declined" ? (
+          <>
+            <span className="text-red-600 font-semibold">Declined</span>
+            <button
+              onClick={() => openModal(myArticle?.declineReason)}
+              className="ml-2 px-2 py-1 bg-blue-500 text-white rounded"
+            >
+              Reason
+            </button>
+          </>
+        ) : (
+          <span className="capitalize">{myArticle?.status}</span>
+        )}
+      </td>
+
       <td>
         {isPremium ? (
           <button className="btn btn-sm btn-info font-bold text-black">
@@ -83,6 +105,22 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
           </button>
         </div>
       </td>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Decline Reason Modal"
+        className="bg-white p-6 max-w-md mx-auto mt-20 rounded shadow-lg outline-none"
+        overlayClassName="fixed inset-0 bg-black/20 bg-opacity-50 flex justify-center items-start z-50"
+      >
+        <h2 className="text-lg font-bold mb-4 text-red-600">Decline Reason</h2>
+        <p className="mb-6">{declineReason || "No reason provided."}</p>
+        <button
+          onClick={closeModal}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Close
+        </button>
+      </Modal>
     </tr>
   );
 };

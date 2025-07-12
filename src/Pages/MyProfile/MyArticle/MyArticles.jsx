@@ -17,7 +17,7 @@ const MyArticles = () => {
             return res.data
         }
     })
-    gi
+    
     if(isLoading) return <Loading/>
     return (
         <div>
