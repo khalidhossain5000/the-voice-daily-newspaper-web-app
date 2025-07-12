@@ -15,7 +15,8 @@ const AllArticles = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [declineReason, setDeclineReason] = useState("");
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const [limit, setLimit] = useState(10);
   const openDeclineModal = (article) => {
     setSelectedArticle(article);
     setModalOpen(true);
@@ -28,17 +29,34 @@ const AllArticles = () => {
     setDeclineReason("");
   };
 
+  // const {
+  //   data: atricles = [],
+  //   isLoading,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["articles", user?.email],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get("/articles");
+  //     return res.data;
+  //   },
+  // });
   const {
-    data: atricles = [],
+    data = { articles: [], total: 0 },
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["articles", user?.email],
+    queryKey: ["articles", user?.email, currentPage, limit],
     queryFn: async () => {
-      const res = await axiosSecure.get("/articles");
+      const res = await axiosSecure.get(
+        `/articles?page=${currentPage}&limit=${limit}`
+      );
       return res.data;
     },
   });
+  const totalPages = Math.ceil(data.total / limit);
+
+  console.log(data,"dattatat");
+
   if (isLoading) return <Loading />;
 
   //approve button
@@ -85,54 +103,54 @@ const AllArticles = () => {
 
   //MAKE ARTICLE PREMIUM RELATED APIS
   const handleMakePremium = (articleId) => {
-  Swal.fire({
-    title: 'Make this article premium?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'Cancel',
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-        const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
-        if (res.data.modifiedCount > 0) {
-          Swal.fire('Success!', 'Article is now premium.', 'success');
-          refetch(); // রিফ্রেশ করলে নতুন data আসবে
-        } else {
-          Swal.fire('Failed', 'Could not update article.', 'error');
+    Swal.fire({
+      title: "Make this article premium?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "Cancel",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire("Success!", "Article is now premium.", "success");
+            refetch(); // রিফ্রেশ করলে নতুন data আসবে
+          } else {
+            Swal.fire("Failed", "Could not update article.", "error");
+          }
+        } catch (err) {
+          Swal.fire("Error!", "Something went wrong.", "error", err);
         }
-      } catch (err) {
-        Swal.fire('Error!', 'Something went wrong.', 'error',err);
       }
-    }
-  });
-};
-//ARTICLE DELETE REALTED API
-const handleDelete = (articleId) => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
-    confirmButtonText: 'Yes, delete it!'
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-        const res = await axiosSecure.delete(`/articles/${articleId}`);
-        if (res.data.deletedCount > 0) {
-          Swal.fire('Deleted!', 'The article has been deleted.', 'success');
-          refetch(); // নতুন করে ডেটা আনো
-        } else {
-          Swal.fire('Failed!', 'Could not delete the article.', 'error');
+    });
+  };
+  //ARTICLE DELETE REALTED API
+  const handleDelete = (articleId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.delete(`/articles/${articleId}`);
+          if (res.data.deletedCount > 0) {
+            Swal.fire("Deleted!", "The article has been deleted.", "success");
+            refetch(); // নতুন করে ডেটা আনো
+          } else {
+            Swal.fire("Failed!", "Could not delete the article.", "error");
+          }
+        } catch (err) {
+          Swal.fire("Error!", "Something went wrong.", "error", err);
         }
-      } catch (err) {
-        Swal.fire('Error!', 'Something went wrong.', 'error',err);
       }
-    }
-  });
-};
+    });
+  };
 
   return (
     <div>
@@ -156,7 +174,7 @@ const handleDelete = (articleId) => {
             </tr>
           </thead>
           <tbody>
-            {atricles.map((article, i) => (
+            {data?.articles?.map((article, i) => (
               <tr key={article._id}>
                 <th>{i + 1}</th>
                 <td>{article?.articleTitle}</td>
@@ -173,7 +191,15 @@ const handleDelete = (articleId) => {
                 <td>{article?.createdAt.split("T")[0]}</td>
                 <td>{article?.status}</td>
                 <td>{article?.publisher?.label}</td>
-                <td>{article?.isPremium ? <button className="btn btn-sm btn-info font-bold text-black">Premium</button> : 'Normal'}</td>
+                <td>
+                  {article?.isPremium ? (
+                    <button className="btn btn-sm btn-info font-bold text-black">
+                      Premium
+                    </button>
+                  ) : (
+                    "Normal"
+                  )}
+                </td>
                 <td className="space-y-3">
                   <div className="flex items-center gap-6">
                     <button
@@ -190,10 +216,16 @@ const handleDelete = (articleId) => {
                     </button>
                   </div>
                   <div className="flex items-center gap-6">
-                    <button onClick={()=>handleDelete(article._id)} className="btn btn-error btn-sm cursor-pointer">
+                    <button
+                      onClick={() => handleDelete(article._id)}
+                      className="btn btn-error btn-sm cursor-pointer"
+                    >
                       Delete
                     </button>
-                    <button onClick={() => handleMakePremium(article._id)} className="btn btn-warning btn-sm cursor-pointer">
+                    <button
+                      onClick={() => handleMakePremium(article._id)}
+                      className="btn btn-warning btn-sm cursor-pointer"
+                    >
                       Make Premium
                     </button>
                   </div>
@@ -202,6 +234,34 @@ const handleDelete = (articleId) => {
             ))}
           </tbody>
         </table>
+        <div className="flex gap-2 my-4">
+          {[...Array(totalPages).keys()].map((number) => (
+            <button
+              key={number}
+              onClick={() => setCurrentPage(number)}
+              className={`px-3 py-1 rounded ${
+                currentPage === number
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              {number + 1}
+            </button>
+          ))}
+          <select
+            className="border p-1 rounded mb-4"
+            value={limit}
+            onChange={(e) => {
+              setLimit(parseInt(e.target.value));
+              setCurrentPage(0); // লিমিট চেঞ্জ করলে প্রথম পেজে ফিরিয়ে নাও
+            }}
+          >
+            <option value={2}>2 per page</option>
+            <option value={5}>5 per page</option>
+            <option value={10}>10 per page</option>
+            <option value={20}>20 per page</option>
+          </select>
+        </div>
       </div>
       <div>
         {/* MODAL */}
