@@ -14,7 +14,6 @@ const MyProfile = () => {
         return res.data
     }
   })
-  console.log("user",user);
 //   const isPremiumUser=currentUserFromDbData?.premiumInfo
 //   console.log(isPremiumUser);
   if (isLoading) return <Loading/>
