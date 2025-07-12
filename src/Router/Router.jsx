@@ -17,6 +17,8 @@ import Payment from "../Pages/Subscription/PaymentPage/Payment";
 import PublicAllArticles from "../Pages/PublicAllArticles/PublicAllArticles";
 import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import SubscriptionRoute from "../Routes/SubscriptionRoute";
+import MyProfileLayout from "../Layouts/MyProfileLayout";
+import MyProfile from "../Pages/MyProfile/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +67,7 @@ export const router = createBrowserRouter([
       }
     ],
   },
+  //AUTH LAYOUT
   {
     path: "/auth",
     Component: AuthLayout,
@@ -79,6 +82,7 @@ export const router = createBrowserRouter([
       }
     ],
   },
+  //DASHBOARD LAYOUT
   {
     path:'/dashboard',
     element:<PrivateRoute>
@@ -100,6 +104,21 @@ export const router = createBrowserRouter([
       {
         path:'add-publisher',
         Component:AddPublisher
+      }
+    ]
+  },
+
+  //MY PROFILE LAYOUT
+  {
+    path:'my-profile-layout',
+    element:<PrivateRoute>
+      <MyProfileLayout></MyProfileLayout>
+    </PrivateRoute>,
+    children:[
+      {
+        path:'my-profile',
+        Component:MyProfile
+
       }
     ]
   }

@@ -50,7 +50,7 @@ const NavBar = () => {
           {user ? (
             <div className="flex items-center gap-6">
               
-                <NavLink>
+                <NavLink to='/my-profile-layout/my-profile'>
                   <img
                     src={user?.photoURL}
                     className="w-12 h-12 rounded-full"

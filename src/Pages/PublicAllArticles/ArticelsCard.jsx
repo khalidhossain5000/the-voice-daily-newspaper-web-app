@@ -41,6 +41,9 @@ const ArticelsCard = ({ article }) => {
 
   return (
     <div className="bg-gray-200 rounded-xl shadow-2xl">
+        {
+            isArticlePremium && <button className="btn btn-md btn-warning my-12 mx-2">Premium</button>
+        }
       <img src={articlePic} alt="" className="w-6/12" />
       <h2>{articleTitle}</h2>
       <p>{descriptions}</p>
