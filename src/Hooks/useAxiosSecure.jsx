@@ -6,7 +6,7 @@ const axiosSecure = axios.create({
 })
 const useAxiosSecure = () => {
     const { user } = useAuth();
-console.log("user from secureaxios",user);
+
     axiosSecure.interceptors.request.use(config => {
         config.headers.Authorization = `Bearer ${user.accessToken}`
         return config;

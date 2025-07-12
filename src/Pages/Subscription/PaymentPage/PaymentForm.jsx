@@ -15,7 +15,7 @@ const PaymentForm = () => {
   const location = useLocation();
   const { amount, duration } = location.state || {};
 //   console.log(duration);
-    const {user}=useAuth()
+    const {user,setUser}=useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -69,6 +69,7 @@ const PaymentForm = () => {
         await axiosSecure.patch(`/users/${user.email}`, {
           premiumInfo: premiumUntil.toISOString(), // 
         });
+        setUser({...user, premiumTaken: premiumUntil.toISOString()})
         alert("user updaed premium")
         //USER PREMIUM FIELD UPDATE ENDS HERE
         alert("Payment succeeded!");
