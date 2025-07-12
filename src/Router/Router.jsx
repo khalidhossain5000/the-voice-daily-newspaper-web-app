@@ -21,6 +21,7 @@ import MyProfileLayout from "../Layouts/MyProfileLayout";
 import MyProfile from "../Pages/MyProfile/MyProfile/MyProfile";
 import UpdateProfile from "../Pages/MyProfile/UpdateProfile/UpdateProfile";
 import MyArticles from "../Pages/MyProfile/MyArticle/MyArticles";
+import UpdateMyArticle from "../Pages/MyProfile/MyArticle/UpdateMyArticle/UpdateMyArticle";
 
 export const router = createBrowserRouter([
   {
@@ -129,6 +130,10 @@ export const router = createBrowserRouter([
       {
         path:'update-profile',
         Component:UpdateProfile
+      },
+      {
+        path:'update-my-article/:id',
+        Component:UpdateMyArticle
       }
     ]
   }

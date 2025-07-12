@@ -85,17 +85,17 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
             Premium
           </button>
         ) : (
-          "Normal"
+          "No"
         )}
       </td>
       <td className="space-y-3">
         <div className="flex items-center gap-6">
-          <button
+          <Link to={`/my-profile/update-my-article/${myArticle._id}`}
             onClick={() => handleArticleUpdate(myArticle)}
             className="btn btn-error btn-sm cursor-pointer"
           >
             Update Article
-          </button>
+          </Link>
 
           <button
             onClick={() => handleDelete(myArticle._id)}
