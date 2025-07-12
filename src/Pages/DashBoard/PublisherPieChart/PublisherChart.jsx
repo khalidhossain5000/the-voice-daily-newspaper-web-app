@@ -84,7 +84,7 @@ const PublisherChart = () => {
           options={barOptions}
         />
       </div>
-      <div className="w-[900px] bg-gray-300 shadow-2xl rounded-xl mx-12 p-3">
+      <div className="mt-22 w-[900px] bg-gray-300 shadow-2xl rounded-xl mx-12 p-3">
         <Chart
           chartType="AreaChart"
           width="100%"
