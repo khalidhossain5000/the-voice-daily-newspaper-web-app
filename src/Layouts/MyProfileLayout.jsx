@@ -10,9 +10,9 @@ const MyProfileLayout = () => {
 };
 
     const links =<>
-    <li><NavLink to='/dashboard/all-users' onClick={handleDrawerClose}>All users</NavLink></li>
-    <li><NavLink to='/dashboard/all-articles' onClick={handleDrawerClose}>All Articles</NavLink></li>
+    <li><NavLink to='/my-profile' onClick={handleDrawerClose}>Home</NavLink></li>
     <li><NavLink to='/dashboard/add-publisher' onClick={handleDrawerClose}>Add Publisher</NavLink></li>
+    <li><NavLink to='/my-profile/update-profile' onClick={handleDrawerClose}>Update Profile</NavLink></li>
     </>
   return (
     <div>

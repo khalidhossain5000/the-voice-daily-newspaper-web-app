@@ -19,6 +19,7 @@ import PremiumArticle from "../Pages/PremiumArticle/PremiumArticle";
 import SubscriptionRoute from "../Routes/SubscriptionRoute";
 import MyProfileLayout from "../Layouts/MyProfileLayout";
 import MyProfile from "../Pages/MyProfile/MyProfile/MyProfile";
+import UpdateProfile from "../Pages/MyProfile/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -110,15 +111,19 @@ export const router = createBrowserRouter([
 
   //MY PROFILE LAYOUT
   {
-    path:'my-profile-layout',
+    path:'my-profile',
     element:<PrivateRoute>
       <MyProfileLayout></MyProfileLayout>
     </PrivateRoute>,
     children:[
       {
-        path:'my-profile',
+        index:true,
         Component:MyProfile
 
+      },
+      {
+        path:'update-profile',
+        Component:UpdateProfile
       }
     ]
   }
