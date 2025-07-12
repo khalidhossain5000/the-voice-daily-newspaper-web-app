@@ -151,6 +151,7 @@ const handleDelete = (articleId) => {
               <th>Posted Date</th>
               <th>Status</th>
               <th>Publisher</th>
+              <th>Is Premium</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -172,6 +173,7 @@ const handleDelete = (articleId) => {
                 <td>{article?.createdAt.split("T")[0]}</td>
                 <td>{article?.status}</td>
                 <td>{article?.publisher?.label}</td>
+                <td>{article?.isPremium ? <button className="btn btn-sm btn-info font-bold text-black">Premium</button> : 'Normal'}</td>
                 <td className="space-y-3">
                   <div className="flex items-center gap-6">
                     <button
