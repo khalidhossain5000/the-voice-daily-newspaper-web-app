@@ -20,6 +20,7 @@ import SubscriptionRoute from "../Routes/SubscriptionRoute";
 import MyProfileLayout from "../Layouts/MyProfileLayout";
 import MyProfile from "../Pages/MyProfile/MyProfile/MyProfile";
 import UpdateProfile from "../Pages/MyProfile/UpdateProfile/UpdateProfile";
+import MyArticles from "../Pages/MyProfile/MyArticle/MyArticles";
 
 export const router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ export const router = createBrowserRouter([
         index:true,
         Component:MyProfile
 
+      },
+      {
+        path:'my-articles',
+        Component:MyArticles
       },
       {
         path:'update-profile',

@@ -11,7 +11,7 @@ const MyProfileLayout = () => {
 
     const links =<>
     <li><NavLink to='/my-profile' onClick={handleDrawerClose}>Home</NavLink></li>
-    <li><NavLink to='/dashboard/add-publisher' onClick={handleDrawerClose}>Add Publisher</NavLink></li>
+    <li><NavLink to='/my-profile/my-articles' onClick={handleDrawerClose}>My Articles</NavLink></li>
     <li><NavLink to='/my-profile/update-profile' onClick={handleDrawerClose}>Update Profile</NavLink></li>
     </>
   return (
