@@ -60,6 +60,7 @@ const PublicAllArticles = () => {
       <div className="serch w-64 mx-auto py-12">
         <input
           type="text"
+          
           placeholder="Search articles by title"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
