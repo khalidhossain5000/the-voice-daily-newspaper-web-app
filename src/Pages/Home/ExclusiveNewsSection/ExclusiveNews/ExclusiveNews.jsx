@@ -24,7 +24,7 @@ const ExclusiveNews = () => {
         Exclusive News
       </h1>
 
-      <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto my-12 lg:my-22 shadow-xl p-3 lg:p-5">
+      <div className="flex flex-col lg:flex-row gap-6 max-w-[1500px] mx-auto my-12 lg:my-22 shadow-xl p-3 lg:p-5">
         {/* Left Side Big Card */}
         <div className="lg:flex-1 bg-white">
           <ExclusiveCardBig news={mainNews} />

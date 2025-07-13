@@ -4,6 +4,7 @@ import Publishers from "../PublisherSection/Publishers";
 import Plans from "../PlansSection/Plans";
 import Statistics from "../Statistics/Statistics";
 import ExclusiveNews from "../ExclusiveNewsSection/ExclusiveNews/ExclusiveNews";
+import LatestNews from "../LatestNews/LatestNews";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
           <Statistics />
           <Plans />
           <ExclusiveNews/>
+          <LatestNews/>
         </div>
       </div>
     </div>
