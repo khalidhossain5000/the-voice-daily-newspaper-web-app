@@ -45,7 +45,7 @@ const TrendingArticlesSlider = () => {
             className="h-[100vh] lg:h-[calc(100vh-80px)] bg-cover bg-center  text-white p-9 lg:px-24 pb-24"
             style={{ backgroundImage: `url(${item.bgImage})` }}
           >
-            <div className="lg:ml-36 max-w-3xl lg:w-[600px] bg-white p-9 rounded-xl ">
+            <div className="shadow-xl shadow-blue-300 lg:ml-36 max-w-3xl lg:w-[600px] bg-white p-9 rounded-xl ">
               <div className="badgete bg-red-600 shadow-2xl rounded-xl p-1 max-w-36 text-center">
                 <h2 className="text-xl font-bold">Trending</h2>
               </div>
@@ -60,7 +60,7 @@ const TrendingArticlesSlider = () => {
                   <div className="contents">
                     <h1 className="truncate text-2xl font-bold text-gray-900 py-2 lg:py-3">{item?.articleTitle}</h1>
 
-                    <p className="text-gray-600 font-medium text-xl line-clamp-3">{item?.descriptions}</p>
+                    <p className="text-gray-600 font-medium text-xl line-clamp-2">{item?.descriptions}</p>
                     {/* publsiher and view count show */}
                     <div className="publisherviews py-3 lg:py-5 flex items-center justify-between ">
                       <button className="btn btn-md btn-warning font-bold text-black">Views : {item?.views}</button>

@@ -1,18 +1,22 @@
-import React from 'react';
-import TrendingArticlesSlider from '../TrendingArticles/TrendingArticlesSlider';
-import Publishers from '../PublisherSection/Publishers';
-import Plans from '../PlansSection/Plans';
-import Statistics from '../Statistics/Statistics';
+import React from "react";
+import TrendingArticlesSlider from "../TrendingArticles/TrendingArticlesSlider";
+import Publishers from "../PublisherSection/Publishers";
+import Plans from "../PlansSection/Plans";
+import Statistics from "../Statistics/Statistics";
 
 const Home = () => {
-    return (
+  return (
+    <div>
+      <TrendingArticlesSlider />
+      <div className="bg-[#f4f6fe]">
         <div>
-            <TrendingArticlesSlider/>
-            <Publishers/>
-            <Plans/>
-            <Statistics/>
+          <Publishers />
+          <Plans />
+          <Statistics />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Home;
