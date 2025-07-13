@@ -34,17 +34,17 @@ const NavBar = () => {
       <li>
         <NavLink to='/premium-articles'>Premium Articles(C)</NavLink>
       </li>
-      <li>
+      <li className="inter">
         <NavLink to='/allArticles'>All Articles(C)</NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="bg-red-300   py-3">
+    <div className="bg-white py-6">
       <div className="hidden md:flex items-center">
         <div className="links max-w-7xl mx-auto">
-          <ul className="flex items-center gap-3">{links}</ul>
+          <ul className="flex items-center gap-3 text-[17px] font-semibold text-[#0b0f32] inter">{links}</ul>
         </div>
         <div className="auth max-w-7xl mx-auto">
           {user ? (
@@ -53,12 +53,12 @@ const NavBar = () => {
                 <NavLink to='/my-profile'>
                   <img
                     src={user?.photoURL}
-                    className="w-12 h-12 rounded-full"
+                    className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
                     alt=""
                   />
                 </NavLink>
               
-              <button onClick={handleLogOut} className="btn btn-warning btn-md">
+              <button onClick={handleLogOut} className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md">
                 Log Out
               </button>
             </div>
@@ -91,14 +91,23 @@ const NavBar = () => {
               </ul>
             </div>
             <div className="">
-              {user ? (
-                <button
-                  onClick={handleLogOut}
-                  className="btn btn-warning btn-sm"
-                >
-                  Log Out
-                </button>
-              ) : (
+              {user ?  <div className="flex items-center gap-6">
+              
+                <NavLink to='/my-profile'>
+                  <img
+                    src={user?.photoURL}
+                    className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
+                    alt=""
+                  />
+                </NavLink>
+              
+              <button onClick={handleLogOut} className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md">
+                Log Out
+              </button>
+            </div>
+                
+               
+               : (
                 <Link to="/auth/login" className="btn btn-md btn-success">
                   Login
                 </Link>

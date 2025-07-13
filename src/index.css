@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
 .swiper-button-next,
 .swiper-button-prev {
     background-color: white;
@@ -28,4 +29,26 @@
   color: white !important;
   transition: .3s;
   transform: scale(1.15); /* slight zoom on hover */
+}
+
+/* font */
+.playfair-display{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.urbanist{
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  
+  font-style: normal;
+}
+
+.inter{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
