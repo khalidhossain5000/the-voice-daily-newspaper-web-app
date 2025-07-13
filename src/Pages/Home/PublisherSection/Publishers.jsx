@@ -1,19 +1,20 @@
 import React from "react";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import useAxios from "../../../Hooks/useAxios";
 
 const Publishers = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const { user } = useAuth();
   //getting publisher data from db
   const { data: publishers = [], isLoading } = useQuery({
     queryKey: ["publishers", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get("/publishers");
+      const res = await axiosInstance.get("/publishers");
       return res.data;
     },
   });

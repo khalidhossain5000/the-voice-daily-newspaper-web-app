@@ -47,7 +47,7 @@ const AddArticle = () => {
       views: 0,
       status: "pending",
       createdAt: new Date().toISOString(),
-      isPremium:false
+      isPremium:false,
     };
 
     //SENDING DATA TO DB

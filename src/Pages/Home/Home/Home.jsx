@@ -3,6 +3,7 @@ import TrendingArticlesSlider from "../TrendingArticles/TrendingArticlesSlider";
 import Publishers from "../PublisherSection/Publishers";
 import Plans from "../PlansSection/Plans";
 import Statistics from "../Statistics/Statistics";
+import ExclusiveNews from "../ExclusiveNewsSection/ExclusiveNews/ExclusiveNews";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
           <Publishers />
           <Statistics />
           <Plans />
+          <ExclusiveNews/>
         </div>
       </div>
     </div>

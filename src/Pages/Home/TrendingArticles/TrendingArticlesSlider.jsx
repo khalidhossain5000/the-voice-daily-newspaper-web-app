@@ -2,7 +2,7 @@ import React from "react";
 import { Link  } from 'react-router';
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from "../../Shared/Loading/Loading";
 //bg image import
 import { bgImages } from "./Data/BgImg";
@@ -13,13 +13,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
+import useAxios from "../../../Hooks/useAxios";
 const TrendingArticlesSlider = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axionsInstance = useAxios()
   const { data: trendingArticles = [], isLoading } = useQuery({
     queryKey: ["trendingArticles", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get("/articles/trending");
+      const res = await axionsInstance.get("/articles/trending");
       return res.data;
     },
   });

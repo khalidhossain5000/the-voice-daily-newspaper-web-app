@@ -5,4 +5,6 @@ export const tagOptions = [
   { value: "entertainment", label: "Entertainment" },
   { value: "business", label: "Business" },
   { value: "health", label: "Health" },
+  { value: "makeup", label: "Make-Up" },
+  { value: "marketing", label: "Marketing" },
 ];
