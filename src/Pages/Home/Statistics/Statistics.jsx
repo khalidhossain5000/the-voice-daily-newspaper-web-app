@@ -24,7 +24,8 @@ const Statistics = () => {
 
   if(isLoading) return <Loading/>
   refetch()
-  console.log(data);
+  
+  
   return (
     <div className="py-24 max-w-7xl mx-auto">
      

@@ -24,7 +24,7 @@ const TrendingArticlesSlider = () => {
     },
   });
   if (isLoading) return <Loading />;
-//   console.log(trendingArticles);
+  // console.log(trendingArticles);
   //attaching bg images to the data
   const sliderData = trendingArticles.map((article, i) => ({
     ...article,
@@ -42,22 +42,43 @@ const TrendingArticlesSlider = () => {
       {sliderData.map((item, i) => (
         <SwiperSlide key={i}>
           <div
-            className="h-[100vh] lg:h-[calc(100vh-100px)] bg-cover bg-center flex items-end text-white p-9 lg:p-24"
+            className="h-[100vh] lg:h-[calc(100vh-80px)] bg-cover bg-center  text-white p-9 lg:px-24 pb-24"
             style={{ backgroundImage: `url(${item.bgImage})` }}
           >
-            <div className="bg-white py-[35px] px-[30px] max-w-full lg:max-w-[450px] lg:ml-20 shadow-2xl lg:h-[460px]">
-                
-              <h2 className="lg:text-3xl text-[#1a1a1a] font-bold">{item.articleTitle}</h2>
-              <img src={item?.articlePic} className="w-5/12 lg:w-5/12 rounded-md" alt="" />
-              <h2 className="lg:text-xl font-bold text-red-600">Publisher:{item?.publisher?.label}</h2>
-              <h3>Tags: {item?.tags.map((tag,i)=><button
-              className='btn btn-warning btn-md mx-1'
-              key={i}
-              >{tag?.label}</button>)}</h3>
-              <p className="mt-2 text-blue-600">{item?.descriptions.slice(0, 150)}...</p>
-              <p className="mt-2 text-sm text-red-600">Views: {item.views}</p>
+            <div className="lg:ml-36 max-w-3xl lg:w-[600px] bg-white p-9 rounded-xl ">
+              <div className="badgete bg-red-600 shadow-2xl rounded-xl p-1 max-w-36 text-center">
+                <h2 className="text-xl font-bold">Trending</h2>
+              </div>
+              <div className="crd">
+                  <div className="author-info text-gray-600 flex gap-3 py-3">
+                    <p className="text-xl font-bold">{item?.createdAt.split('T')[0]}</p>
+                    <h2 className="text-cyan-500 text-xl font-bold">By {item?.authorName}</h2>
+                  </div>
+                  <div className="imgs border w-full ">
+                    <img src={item?.articlePic} className="mx-auto max-w-9/12 lg:w-full shadow-xl rounded-xl" alt="" />
+                  </div>
+                  <div className="contents">
+                    <h1 className="truncate text-2xl font-bold text-gray-900 py-2 lg:py-3">{item?.articleTitle}</h1>
 
-              <Link to={`/article/${item._id}`} className='btn btn-md btn-warning'>See More</Link>
+                    <p className="text-gray-600 font-medium text-xl line-clamp-3">{item?.descriptions}</p>
+                    {/* publsiher and view count show */}
+                    <div className="publisherviews py-3 lg:py-5 flex items-center justify-between ">
+                      <button className="btn btn-md btn-warning font-bold text-black">Views : {item?.views}</button>
+                      <button className="btn btn-md btn-warning font-bold text-black">Publisher : {item?.publisher.label}</button>
+                    </div>
+                  {/* tags show
+                  <div className="space-x-6 flex items-center py-6">
+                    <p className="text-cyan-500 font-bold text-2xl">Tags:</p>
+                    {
+                      item?.tags.map((tag,i)=><button
+                      key={i}
+                      className="btn btn-md btn-warning font-bold text-black"
+                      > {tag.label}</button>)
+                    }
+                  </div> */}
+                  <Link className="btn btn-xl w-full text-xl font-bold text-black btn-info " to={`/article/${item?._id}`}>Read More</Link>
+                  </div>
+                </div>
             </div>
           </div>
         </SwiperSlide>
