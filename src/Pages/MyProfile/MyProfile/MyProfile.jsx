@@ -42,7 +42,7 @@ const MyProfile = () => {
         <div className="mt-12 space-y-2 bg-white/90 p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col lg:flex-row items-center justify-around">
           <h2 className="text-lg lg:text-xl font-semibold text-[#211f54] tracking-wide">
             Role:{" "}
-            <span className="font-bold text-gray-700">
+            <span className="font-bold text-gray-900">
               {currentUserFromDbData?.role}
             </span>
           </h2>

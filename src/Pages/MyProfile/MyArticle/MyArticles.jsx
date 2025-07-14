@@ -21,19 +21,23 @@ const MyArticles = () => {
     if(isLoading) return <Loading/>
     return (
         <div>
-            <h1 className='text-center text-3xl font-bold py-12'>MY ARTICLES</h1>
 
-            <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-full">
+          <div className='py-24 bg-gradient-to-tr from-[#7e7dfd] via-white to-[#ffcfff]'>
+            <h1 className='text-center text-3xl font-bold inter  py-6'>MY ARTICLES</h1>
+          </div>
+            
+
+             <div className="overflow-x-auto rounded-box border border-gray-300 shadow-xl max-w-7xl mx-auto mt-6 lg:mt-12">
         <table className="table">
           {/* head */}
-          <thead>
-            <tr>
+          <thead className='bg-gray-300'>
+            <tr className="text-xl text-[#211f54] urbanist border-b border-b-gray-300 ">
               <th>#</th>
               <th>Article Title</th>
               <th>Article Details</th>
               <th>Status</th>
               <th>Is Premium</th>
-              <th>Actions</th>
+              <th className='text-center'>Actions</th>
             </tr>
           </thead>
           <tbody>

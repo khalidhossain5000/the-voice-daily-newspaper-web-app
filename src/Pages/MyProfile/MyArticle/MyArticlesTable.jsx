@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
+import { FiTrash2 } from "react-icons/fi";
 const MyArticlesTable = ({ myArticle, serial, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -53,18 +54,27 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
     <tr>
       <th>{serial + 1}</th>
       <td className="line-clamp-2">
-        {articleTitle.split(" ").slice(0, 15).join(" ")}.......
+        {/* {articleTitle.split(" ").slice(0, 15).join(" ")}....... */}
+        {articleTitle}
       </td>
       <td>
-        <Link
+        {/* <Link
           to={`/article/${myArticle._id}`}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
         >
           Details
+        </Link> */}
+        <Link
+          to={`/article/${myArticle._id}`}
+          className="relative inline-block px-6 py-2 font-semibold text-white group"
+        >
+          <span className="absolute inset-0 w-full h-full transition duration-300 ease-out transform translate-x-1 translate-y-1 bg-blue-700 group-hover:-translate-x-0 group-hover:-translate-y-0 rounded-lg"></span>
+          <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg group-hover:shadow-xl transition duration-300 ease-out"></span>
+          <span className="relative">Details</span>
         </Link>
       </td>
       <td>
-        {myArticle.status === "declined" ? (
+        {/* {myArticle.status === "declined" ? (
           <>
             <span className="text-red-600 font-semibold">Declined</span>
             <button
@@ -76,33 +86,93 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
           </>
         ) : (
           <span className="capitalize">{myArticle?.status}</span>
-        )}
+        )} */}
+
+        <td className="py-4">
+          {myArticle.status === "declined" ? (
+            <div className="flex items-center gap-3">
+              <span className="bg-red-200 text-red-800 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">
+                Declined
+              </span>
+
+              <button
+                onClick={() => openModal(myArticle?.declineReason)}
+                className="cursor-pointer relative inline-flex items-center justify-center overflow-hidden rounded-full px-4 py-[6px] text-sm font-medium text-blue-600 border border-blue-600 group hover:text-white transition-all duration-200"
+              >
+                <span className="absolute inset-0 bg-blue-600 transition-all duration-300 ease-out transform scale-x-0 group-hover:scale-x-100 origin-left rounded-full"></span>
+                <span className="relative z-10">View Reason</span>
+              </button>
+            </div>
+          ) : (
+            <span
+              className={`capitalize px-3 py-1 rounded-full text-sm font-semibold
+        ${
+          myArticle.status === "pending"
+            ? "bg-yellow-100 text-yellow-800"
+            : myArticle.status === "approved"
+            ? "bg-green-100 text-green-700"
+            : "bg-gray-200 text-gray-700"
+        }`}
+            >
+              {myArticle?.status}
+            </span>
+          )}
+        </td>
       </td>
 
       <td>
         {isPremium ? (
-          <button className="btn btn-sm btn-info font-bold text-black">
+          <span className="inline-block px-4 py-[6px] text-sm font-semibold text-black bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
             Premium
-          </button>
+          </span>
         ) : (
-          "No"
+          <span className="text-sm font-medium text-red-600">No</span>
         )}
       </td>
       <td className="space-y-3">
         <div className="flex items-center gap-6">
-          <Link to={`/my-profile/update-my-article/${myArticle._id}`}
+          {/* <Link
+            to={`/my-profile/update-my-article/${myArticle._id}`}
             onClick={() => handleArticleUpdate(myArticle)}
             className="btn btn-error btn-sm cursor-pointer"
           >
             Update Article
+          </Link> */}
+          <Link
+            to={`/my-profile/update-my-article/${myArticle._id}`}
+            onClick={() => handleArticleUpdate(myArticle)}
+            className="
+    inline-flex items-center whitespace-nowrap
+    px-5 py-2 text-sm font-semibold
+    text-[#16b7cc] border-2 border-[#16b7cc]
+    rounded-full
+    transition-all duration-200
+    hover:bg-[#16b7cc] hover:text-white
+    hover:shadow-lg hover:-translate-y-0.5
+  "
+          >
+            Update Article
           </Link>
 
-          <button
+          {/* <button
             onClick={() => handleDelete(myArticle._id)}
             className="btn btn-error btn-sm cursor-pointer"
           >
             Delete Article
-          </button>
+          </button> */}
+
+          
+
+          
+<button
+  onClick={() => handleDelete(myArticle._id)}
+  className="whitespace-nowrap inline-block px-6 py-2 bg-[#211f54] text-white font-medium rounded-md transition-transform duration-500 ease-out hover:bg-red-600 cursor-pointer hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#16b7cc]"
+>
+  Delete Article
+</button>
+
+
+
         </div>
       </td>
       <Modal
