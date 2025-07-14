@@ -45,7 +45,8 @@ const Subscription = () => {
 
       {/* 2. Subscription Form */}
 
-      <section className="my-14 lg:my-24 w-full max-w-xl mx-auto bg-gradient-to-br from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] shadow-2xl p-10 rounded-2xl border-t-4 border-b-4 border-[#211F54]">
+      <div className="px-3 md:px-0">
+        <div className="my-14 lg:my-24 w-full max-w-xl mx-auto bg-gradient-to-br from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] shadow-2xl p-10 rounded-2xl border-t-4 border-b-4 border-[#211F54]">
         <h3 className="text-3xl font-serif text-[#211F54] mb-8 text-center tracking-wide">
           Choose Your Plan
         </h3>
@@ -96,7 +97,8 @@ const Subscription = () => {
             Subscribe Now
           </button>
         </form>
-      </section>
+      </div>
+      </div>
 
       {/* BELOW OLD CODE */}
 
