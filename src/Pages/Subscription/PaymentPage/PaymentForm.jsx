@@ -81,19 +81,57 @@ const PaymentForm = () => {
     }
   };
   return (
-    <div className="max-w-xl mx-auto mt-12 bg-gray-200 p-9 rounded-2xl shadow-2xl">
-      <form onSubmit={handleSubmit}>
-        <CardElement />
-        <button
-          type="submit"
-          className="mt-14 w-full cursor-pointer btn bg-sky-500 text-white btn-md"
-          disabled={!stripe || processing}
-        >
-          {processing ? "Processing..." : `Pay $${amount}`}
-        </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-      </form>
+    // <div className="max-w-xl mx-auto mt-12 bg-gray-200 p-9 rounded-2xl shadow-2xl">
+    //   <form onSubmit={handleSubmit}>
+    //     <CardElement />
+    //     <button
+    //       type="submit"
+    //       className="mt-14 w-full cursor-pointer btn bg-sky-500 text-white btn-md"
+    //       disabled={!stripe || processing}
+    //     >
+    //       {processing ? "Processing..." : `Pay $${amount}`}
+    //     </button>
+    //     {error && <p style={{ color: "red" }}>{error}</p>}
+    //   </form>
+    // </div>
+
+<div className="py-12 lg:py-20 px-2 lg:px-0">
+  
+    {/* form start */}
+    <div className="max-w-2xl mx-auto mt-12 bg-gradient-to-br from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] p-8 rounded-3xl shadow-2xl">
+  <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="p-4 bg-white rounded-xl shadow-inner">
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#211F54',
+              '::placeholder': { color: '#A0AEC0' },
+              fontFamily: 'inherit',
+            },
+            invalid: { color: '#E53E3E' },
+          },
+        }}
+      />
     </div>
+    <button
+      type="submit"
+      className="cursor-pointer w-full py-3 bg-gradient-to-r from-[#211F54] to-[#433D7E] text-white font-semibold rounded-full shadow-lg hover:opacity-95 transition"
+      disabled={!stripe || processing}
+    >
+      {processing ? 'Processing...' : `Pay $${amount}`}
+    </button>
+    {error && (
+      <p className="text-center text-sm text-red-600 font-medium">
+        {error}
+      </p>
+    )}
+  </form>
+</div>
+</div>
+
+
   );
 };
 
