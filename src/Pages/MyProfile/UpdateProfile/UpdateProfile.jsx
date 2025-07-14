@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const UpdateProfile = () => {
   const { loading, updateUserProfile, user, setUser } = useAuth();
   const [updatedPic, setUpdatedPic] = useState(user?.photoURL);
+  console.log("updadte dpi",updatedPic);
   const axiosSecure=useAxiosSecure()
   const handleSubmit = async (e) => {
     e.preventDefault();

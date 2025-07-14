@@ -55,7 +55,7 @@ const AllArticles = () => {
   });
   const totalPages = Math.ceil(data.total / limit);
 
-  console.log(data,"dattatat");
+  console.log(data, "dattatat");
 
   if (isLoading) return <Loading />;
 
@@ -154,94 +154,151 @@ const AllArticles = () => {
 
   return (
     <div>
-      <h2>All Articles</h2>
+      <div className="px-12 w-full lg:w-11/12 mx-auto rounded-2xl shadow-xl h-48 bg-gradient-to-tr from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] flex items-center justify-center relative overflow-hidden ">
+        <div className="text-center px-4">
+          <h1 className="text-[#211F54] text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
+            All Articles
+          </h1>
+        </div>
+        {/* Subtle overlay shapes in primary text color */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#211F54] opacity-10 rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#211F54] opacity-10 rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+      </div>
 
-      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-full">
+      <div className="p-3 lg:p-6 mt-6 shadow-2xl max-w-[1500px] mx-auto overflow-x-auto rounded-box bg-white w-full">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Author Email</th>
-              <th>Author Pic</th>
-              <th>Posted Date</th>
-              <th>Status</th>
-              <th>Publisher</th>
-              <th>Is Premium</th>
-              <th>Actions</th>
+            <tr className="text-3xl text-[#211f54] rancho border-b border-b-gray-300 ">
+              <th className="border-r border-r-gray-300">#</th>
+              <th className="border-r border-r-gray-300">Title</th>
+              <th className="border-r border-r-gray-300">Author</th>
+              <th className="border-r border-r-gray-300">Author Email</th>
+              <th className="border-r border-r-gray-300">Author Pic</th>
+              <th className="border-r border-r-gray-300">Posted Date</th>
+              <th className="border-r border-r-gray-300">Status</th>
+              <th className="border-r border-r-gray-300">Publisher</th>
+              <th className="border-r border-r-gray-300">Is Premium</th>
+              <th className="">Actions</th>
             </tr>
           </thead>
           <tbody>
             {data?.articles?.map((article, i) => (
               <tr key={article._id}>
-                <th>{i + 1}</th>
-                <td>{article?.articleTitle}</td>
-                <td>{article?.authorName}</td>
-                <td>{article?.authorEmail}</td>
-                <td>
+                <th className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {i + 1}
+                </th>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {article?.articleTitle}
+                </td>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {article?.authorName}
+                </td>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {article?.authorEmail}
+                </td>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
                   {
                     <img
                       src={article?.auhtorPhoto}
-                      className="w-9 h-9 rounded-full"
+                      className="w-9 h-9 rounded-full mx-auto"
                     />
                   }
                 </td>
-                <td>{article?.createdAt.split("T")[0]}</td>
-                <td>{article?.status}</td>
-                <td>{article?.publisher?.label}</td>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {article?.createdAt.split("T")[0]}
+                </td>
+                <td
+                  className={`border-r border-r-gray-300 text-[17px] urbanist font-bold ${
+                    article?.status === "approved"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  {article?.status}
+                </td>
+                <td className="border-r border-r-gray-300 text-[17px] urbanist font-medium text-gray-900">
+                  {article?.publisher?.label}
+                </td>
                 <td>
                   {article?.isPremium ? (
-                    <button className="btn btn-sm btn-info font-bold text-black">
+                    <button className="bg-gradient-to-r from-[#211f54] via-[#3a388e] to-[#5a58c9] text-white text-xs font-bold uppercase tracking-wide px-4 py-1 lg:py-3 rounded-full shadow-md hover:scale-105 transition duration-200">
                       Premium
                     </button>
                   ) : (
-                    "Normal"
+                    <h2 className="text-md rancho font-bold text-gray-900 text-xl lg:text-2xl">
+                      Normal
+                    </h2>
                   )}
                 </td>
                 <td className="space-y-3">
                   <div className="flex items-center gap-6">
-                    <button
+                    {/* <button
                       onClick={() => handleApprove(article?._id)}
                       className="btn btn-success btn-sm cursor-pointer"
                     >
                       approve
-                    </button>
+                    </button> */}
                     <button
+                      onClick={() => handleApprove(article?._id)}
+                      className="bg-green-600 hover:bg-green-700 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
+                    >
+                      Approve
+                    </button>
+                    {/* <button
                       onClick={() => openDeclineModal(article)}
                       className="btn btn-error btn-sm cursor-pointer"
                     >
                       decline
-                    </button>
+                    </button> */}
+                    <button
+  onClick={() => openDeclineModal(article)}
+  className="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
+>
+  Decline
+</button>
                   </div>
                   <div className="flex items-center gap-6">
-                    <button
+                    {/* <button
                       onClick={() => handleDelete(article._id)}
                       className="btn btn-error btn-sm cursor-pointer"
                     >
                       Delete
-                    </button>
+                    </button> */}
                     <button
+  onClick={() => handleDelete(article._id)}
+  className="bg-red-700 hover:bg-red-800 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
+>
+  Delete
+</button>
+
+                    {/* <button
                       onClick={() => handleMakePremium(article._id)}
                       className="btn btn-warning btn-sm cursor-pointer"
                     >
                       Make Premium
-                    </button>
+                    </button> */}
+                    <button
+  onClick={() => handleMakePremium(article._id)}
+  className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-md hover:scale-105 transition duration-200 cursor-pointer"
+>
+  Make Premium
+</button>
+
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="flex gap-2 my-4">
+        <div className="flex gap-2 my-4 items-center mt-6">
           {[...Array(totalPages).keys()].map((number) => (
             <button
               key={number}
               onClick={() => setCurrentPage(number)}
-              className={`px-3 py-1 rounded ${
+              className={`px-3 py-3 rounded ${
                 currentPage === number
-                  ? "bg-blue-600 text-white"
+                  ? "bg-[#211f54] text-white text-xs font-bold px-3 lg:px-6 py-1 rounded-full"
                   : "bg-gray-200"
               }`}
             >
