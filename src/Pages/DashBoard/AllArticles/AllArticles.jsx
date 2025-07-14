@@ -115,7 +115,7 @@ const AllArticles = () => {
           const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
           if (res.data.modifiedCount > 0) {
             Swal.fire("Success!", "Article is now premium.", "success");
-            refetch(); // রিফ্রেশ করলে নতুন data আসবে
+            refetch(); 
           } else {
             Swal.fire("Failed", "Could not update article.", "error");
           }
@@ -141,7 +141,7 @@ const AllArticles = () => {
           const res = await axiosSecure.delete(`/articles/${articleId}`);
           if (res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "The article has been deleted.", "success");
-            refetch(); // নতুন করে ডেটা আনো
+            refetch(); 
           } else {
             Swal.fire("Failed!", "Could not delete the article.", "error");
           }

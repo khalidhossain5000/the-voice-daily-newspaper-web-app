@@ -1,15 +1,15 @@
 import React from "react";
+
 import { Link  } from 'react-router';
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from "../../Shared/Loading/Loading";
-//bg image import
+
 import { bgImages } from "./Data/BgImg";
-//swiper js
+
 import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -18,14 +18,21 @@ import { FaGripfire } from "react-icons/fa";
 const TrendingArticlesSlider = () => {
   const { user } = useAuth();
   const axionsInstance = useAxios()
-  const { data: trendingArticles = [], isLoading } = useQuery({
+  const { data: trendingArticles = [], isPending } = useQuery({
     queryKey: ["trendingArticles", user?.email],
     queryFn: async () => {
       const res = await axionsInstance.get("/articles/trending");
       return res.data;
     },
   });
-  if (isLoading) return <Loading />;
+   
+
+ 
+
+
+  if (isPending) return <Loading />;
+
+
   // console.log(trendingArticles);
   //attaching bg images to the data
   const sliderData = trendingArticles.map((article, i) => ({
@@ -50,6 +57,7 @@ const TrendingArticlesSlider = () => {
             <div className="shadow-xl shadow-blue-300 lg:ml-36 w-full lg:w-[600px] bg-white p-5 md:p-9 rounded-xl ">
               <div className="w-22 badgete bg-red-600 shadow-2xl rounded-xl p-1 lg:max-w-36 text-center">
                 <h2 className="lg:text-xl font-medium inter md:font-bold">Trending</h2>
+                
               </div>
               <div className="crd">
                   <div className="author-info text-gray-600 flex justify-between md:justify-between gap-3 py-2 md:py-3">
@@ -57,7 +65,7 @@ const TrendingArticlesSlider = () => {
                     <h2 className="text-cyan-500 md:text-xl font-medium md:font-bold">By {item?.authorName}</h2>
                   </div>
                   <div className="imgs w-full ">
-                    <img src={item?.articlePic} className="mx-auto w-full lg:w-full shadow-xl rounded-xl" alt="" />
+                    <img src={item?.articlePic} className="mx-auto w-full lg:w-full shadow-xl rounded-xl h-[300px]" alt="" />
                   </div>
                   <div className="contents playfair-display">
                     <h1 className="truncate md:text-2xl font-bold text-gray-900 py-2 lg:py-3">{item?.articleTitle}</h1>

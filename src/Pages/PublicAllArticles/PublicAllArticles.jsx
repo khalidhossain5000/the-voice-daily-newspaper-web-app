@@ -56,7 +56,7 @@ const PublicAllArticles = () => {
 
   if (isLoading || publisherLoading) return <Loading />;
   return (
-    <div>
+    <div className="bg-[#e8efef]">
       <div className="serch w-64 mx-auto py-12">
         <input
           type="text"
@@ -92,7 +92,7 @@ const PublicAllArticles = () => {
           No articles found matching your search/filter.
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto py-24 gap-6">
+        <div className=" grid grid-cols-1 md:grid-cols- lg:grid-cols-4 lg:max-w-full max-w-7xl lg:px-22 px-3 mx-auto py-24 gap-6">
           {atricles.map((article) => (
             <ArticelsCard key={article._id} article={article}></ArticelsCard>
           ))}
