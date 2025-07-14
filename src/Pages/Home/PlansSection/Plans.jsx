@@ -17,10 +17,10 @@ const Plans = () => {
             Choose a plan that works best for you and your team.
           </p>
         </div>
-        <div className="py-24 lg:flex items-center gap-12">
+        <div className="px-3 lg:px-0 py-14 md:py-24 lg:flex items-center gap-12 space-y-6 lg:space-y-0">
           {/* <!-- Basic Card --> */}
-          <div className="max-w-2xl lg:w-[490px] p-4 lg:p-9 bg-white text-center rounded-3xl px-16 shadow-xl">
-            <h2 className="text-[#211f54] text-3xl font-bold">
+          <div className="max-w-2xl lg:w-[490px] p-6 lg:p-9 bg-white text-center rounded-xl lg:rounded-3xl lg:px-16 shadow-xl">
+            <h2 className="text-[#211f54] text-2xl lg:text-3xl font-bold">
               Basic Plan - “News Lite”
             </h2>
             <p className="text-gray-600 my-6 font-bold text-xl">
@@ -43,7 +43,7 @@ const Plans = () => {
 
             {/* divider ends */}
 
-            <div className="pt-8 icon">
+            <div className="pt-2 lg:pt-8 icon">
               <ul>
                 <li className="flex items-center gap-3 my-5">
                   <RxCross2 className="text-2xl text-red-600 " />
@@ -65,17 +65,19 @@ const Plans = () => {
                 </li>
               </ul>
 
-              <Link
-                to="/subscription"
-                className="btn btn-xl btn-info w-full font-bold text-black"
-              >
-                Choose Plan
-              </Link>
+              <div className="mx-auto text-center mt-12 ">
+                <Link
+                  className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
+                  to={`/subscriptions`}
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
           </div>
           {/* <!-- StartUp Card --> */}
-          <div className="max-w-96 lg:w-full px-6 py-9  bg-[#05117c] text-center rounded-3xl text-white border-4 shadow-xl border-white transform scale-125">
-            <h2 className="text-3xl pt-2 lg:pt-6 font-bold text-white mb-4">
+          <div className="max-w-2xl lg:w-full p-6 lg:px-6 lg:py-9  bg-[#05117c] text-center rounded-xl lg:rounded-3xl text-white border-4 shadow-xl border-white lg:transform lg:scale-125">
+            <h2 className="text-2xl lg:text-3xl pt-2 lg:pt-6 font-bold text-white mb-4">
               Standard Plan – “News Plus”
             </h2>
             <p className="text-gray-200 my-6 font-medium">
@@ -85,7 +87,7 @@ const Plans = () => {
               $99/
               <span className="text-2xl font-bold text-gray-200">5 D</span>
             </p>
-             {/* divider */}
+            {/* divider */}
             <div className="flex items-center py-3">
               <div className="flex-grow border-t border-gray-300"></div>
               <span className="px-4 text-gray-200 text-xl font-medium">
@@ -95,34 +97,31 @@ const Plans = () => {
             </div>
 
             {/* divider ends */}
-             <div className="pt-8 icon">
+            <div className="pt-3 lg:pt-8 icon">
               <ul>
                 <li className="flex items-center gap-3 my-2">
-                  <IoCheckmark className="text-3xl text-green-500 " />
-                  <span className="text-[17px] text-gray-100">
+                  <IoCheckmark className="text-2xl lg:text-3xl text-green-500 " />
+                  <span className="urbanist lg:text-[17px] text-gray-100">
                     Access To Premium Articles Pages
                   </span>
                 </li>
                 <li className="flex items-center gap-3 my-2">
-                  <IoCheckmark className="text-3xl text-green-500" />
-                  <span className="text-[17px] text-gray-300">
+                  <IoCheckmark className="text-2xl lg:text-3xl text-green-500" />
+                  <span className="urbanist lg:text-[17px] text-gray-300">
                     Access To Premium Articles Details
                   </span>
                 </li>
                 <li className="flex items-center gap-3 my-2">
-                  <IoCheckmark className="text-3xl text-green-500" />
-                  <span className="text-[17px] text-gray-300">
+                  <IoCheckmark className="text-2xl lg:text-3xl text-green-500" />
+                  <span className="urbanis lg:text-[17px] text-gray-300">
                     Unlimited Articles Post
                   </span>
                 </li>
               </ul>
 
-              <Link
-                to="/subscription"
-                className="btn btn-xl btn-info w-full font-bold text-black"
-              >
-                Choose Plan
-              </Link>
+              <div className="mx-auto text-center mt-12">
+                                  <Link className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white" to={`/subscription`}>Read More</Link>
+                                </div>
             </div>
             <div className="absolute top-4 right-4">
               <p className="bg-blue-700 font-semibold px-4 py-1 rounded-full uppercase text-xs">
@@ -132,7 +131,7 @@ const Plans = () => {
           </div>
 
           {/* enter prise card */}
-          <div className="max-w-2xl lg:w-[490px] p-4 lg:p-9 bg-white text-center rounded-3xl px-16 shadow-xl">
+          <div className="max-w-2xl lg:w-[490px] p-6 lg:p-9 bg-white text-center rounded-xl lg:rounded-3xl lg:px-16 shadow-xl">
             <h2 className="text-[#211f54] text-3xl font-bold">
               Premium Plan – “Pro Reader”
             </h2>
@@ -156,7 +155,7 @@ const Plans = () => {
 
             {/* divider ends */}
 
-            <div className="pt-8 icon">
+            <div className="pt-3 lg:pt-8 icon">
               <ul>
                 <li className="flex items-center gap-3 my-5">
                   <RxCross2 className="text-2xl text-red-600 " />
@@ -178,12 +177,9 @@ const Plans = () => {
                 </li>
               </ul>
 
-              <Link
-                to="/subscription"
-                className="btn btn-xl btn-info w-full font-bold text-black"
-              >
-                Choose Plan
-              </Link>
+             <div className="mx-auto text-center mt-12">
+                                 <Link className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white" to={`/subscription`}>Read More</Link>
+                               </div>
             </div>
           </div>
         </div>

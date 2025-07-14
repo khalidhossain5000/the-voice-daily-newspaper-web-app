@@ -20,7 +20,7 @@ const ExclusiveNews = () => {
   if (isLoading) return <Loading />;
   return (
     <div className="py-24 bg-[#ffffff]">
-      <h1 className="text-6xl text-center font-bold text-red-600">
+      <h1 className="text-5xl lg:text-6xl text-center font-bold text-[#211f54]">
         Exclusive News
       </h1>
 

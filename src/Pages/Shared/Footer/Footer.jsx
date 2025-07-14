@@ -31,7 +31,7 @@ const Footer = () => {
           <img src={footerlogo} className="max-w-64 md:w-64 mx-auto" alt="" />
         </div>
         <div className="socialnadmenu">
-          <div className="flex flex-col lg:flex-row  justify-center items-center mt-3 lg:mt-12 gap-6 lg:gap-12">
+          <div className="flex flex-wrap lg:flex-row  justify-center items-center mt-3 lg:mt-12 gap-6 lg:gap-12">
             <a href="https://facebook.com/" target="_blank">
               <FaFacebook
                 size={50}
