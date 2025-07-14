@@ -22,6 +22,7 @@ import MyProfile from "../Pages/MyProfile/MyProfile/MyProfile";
 import UpdateProfile from "../Pages/MyProfile/UpdateProfile/UpdateProfile";
 import MyArticles from "../Pages/MyProfile/MyArticle/MyArticles";
 import UpdateMyArticle from "../Pages/MyProfile/MyArticle/UpdateMyArticle/UpdateMyArticle";
+import Test from "../Pages/Subscription/Test";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
       {
         path:'allArticles',
         Component:PublicAllArticles
+      },
+      {
+        path:'test',
+        Component:Test
       }
     ],
   },

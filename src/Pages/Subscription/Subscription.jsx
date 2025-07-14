@@ -24,24 +24,86 @@ const Subscription = () => {
     });
   };
   return (
-    <div>
-      <h1 className="text-center font-bold text-5xl py-12">
-        WELCOME TO SUBSCRIPTION PAGE OF NEWSPAPER
-      </h1>
+    <div className="">
+      <div className="w-full h-64 md:h-80 lg:h-96 bg-gradient-to-tr from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] flex items-center justify-center relative overflow-hidden">
+        <div className="text-center px-4">
+          <h1 className="text-[#211F54] text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
+            Stay Informed. Stay Ahead.
+          </h1>
+          <p className="text-[#211F54] text-lg md:text-xl mb-6">
+            Go Premium and Get Access to Unlimited Articles, Unlimited Voice —
+            Start Your Journey.
+          </p>
+          <button className="bg-[#211F54] text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300">
+            Subscribe Now
+          </button>
+        </div>
+        {/* Subtle overlay shapes in primary text color */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#211F54] opacity-10 rounded-full transform translate-x-1/3 -translate-y-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#211F54] opacity-10 rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+      </div>
 
-      <div className="max-w-6xl mx-auto p-6">
-        {/* 1. Banner */}
-        <section className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl p-10 mb-10 flex flex-col md:flex-row justify-between items-center">
-          <div>
-            <h2 className="text-4xl font-bold mb-3">
-              Go Premium, Unlock Everything!
-            </h2>
-            <p>Get ad-free access, exclusive articles, and more.</p>
+      {/* 2. Subscription Form */}
+
+      <section className="my-14 lg:my-24 w-full max-w-xl mx-auto bg-gradient-to-br from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] shadow-2xl p-10 rounded-2xl border-t-4 border-b-4 border-[#211F54]">
+        <h3 className="text-3xl font-serif text-[#211F54] mb-8 text-center tracking-wide">
+          Choose Your Plan
+        </h3>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="relative mb-8">
+            <select
+              {...register("duration")}
+              defaultValue=""
+              className="w-full appearance-none px-5 py-3 bg-white bg-opacity-80 border border-gray-300 rounded-lg font-medium focus:outline-none focus:border-[#211F54] transition"
+            >
+              <option value="" disabled>
+                Select duration (Days)
+              </option>
+              {subscriptionOptions.map((opt, i) => (
+                <option key={i} value={opt.duration}>
+                  {opt.duration} Days
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <svg
+                className="w-6 h-6 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
           </div>
-          <img src="/your/banner/image.svg" className="w-48" alt="premium" />
-        </section>
 
-        {/* 2. Subscription Form */}
+          <p className="text-center text-xl font-semibold text-[#211F54] mb-8">
+            Price:&nbsp;
+            <span className="text-green-600">
+              ${selectedPlan ? selectedPlan.price : 0}
+            </span>
+          </p>
+
+          <button
+            type="submit"
+            className="w-full py-4 bg-gradient-to-r from-[#211F54] to-[#433D7E] text-white font-semibold rounded-full shadow-lg hover:opacity-95 transition"
+          >
+            Subscribe Now
+          </button>
+        </form>
+      </section>
+
+      {/* BELOW OLD CODE */}
+
+      {/* <div className="max-w-6xl mx-auto p-6">
+        
+
+       
         <section className="bg-white shadow-md p-6 rounded-xl">
           <h3 className="text-xl font-semibold mb-4">Choose Your Plan</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +132,7 @@ const Subscription = () => {
             </button>
           </form>
         </section>
-      </div>
+      </div> */}
     </div>
   );
 };
