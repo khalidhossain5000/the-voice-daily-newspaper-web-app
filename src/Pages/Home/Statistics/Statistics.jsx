@@ -23,11 +23,11 @@ const Statistics = () => {
   refetch();
 
   return (
-    <div className="py-24 bg-[#f0f2fb] ">
-      <h1 className="text-6xl font-bold text-pink-600 text-center pt-6 pb-12">
+    <div className="py-14 md:py-24 bg-[#f0f2fb] ">
+      <h1 className="text-3xl md:text-6xl font-bold text-pink-600 text-center pt-6 pb-12">
         Statistics
       </h1>
-      <div className="statiscticcontainer max-w-7xl mx-auto md:flex items-center  gap-12">
+      <div className="statiscticcontainer max-w-7xl mx-auto md:flex items-center  gap-12 px-4 lg:px-0 space-y-6 lg:space-y-0">
         <div className="p-3 lg:p-6 shadow-md flex-1 crd-1 bg-white border border-gray-300 rounded-xl space-y-3 lg:space-y-6">
           <FiUsers
             style={{ margin: "auto" }}
