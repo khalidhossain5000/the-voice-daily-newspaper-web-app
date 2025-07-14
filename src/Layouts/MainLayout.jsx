@@ -3,6 +3,7 @@ import NavBar from '../Pages/Shared/NavBar';
 import { Outlet, useNavigation } from 'react-router';
 import Loading from '../Pages/Shared/Loading/Loading';
 import { PropagateLoader } from 'react-spinners';
+import Footer from '../Pages/Shared/Footer/Footer';
 
 const MainLayout = () => {
     const { state } = useNavigation();
@@ -30,7 +31,7 @@ const MainLayout = () => {
                 {state === "loading" ? <Loading /> : <Outlet/>}
             </main>
             <footer>
-                
+                <Footer/>
             </footer>
         </div>
     );

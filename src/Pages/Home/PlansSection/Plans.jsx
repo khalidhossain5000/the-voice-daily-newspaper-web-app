@@ -6,15 +6,15 @@ import { IoCheckmark } from "react-icons/io5";
 
 const Plans = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="py-14 lg:py-24 flex justify-center items-center">
       <div className="">
-        <div className="text-center font-semibold">
+        <div className="text-center font-semibold py-3 lg:py-12">
           <h1 className="text-5xl">
-            <span className="text-blue-700 tracking-wide">Flexible </span>
+            <span className="text-[#211f54] font-bold  tracking-wide">Flexible </span>
             <span>Plans</span>
           </h1>
-          <p className="pt-6 text-xl text-gray-400 font-normal w-full px-8 md:w-full">
-            Choose a plan that works best for you and your team.
+          <p className="pt-6 text-xl text-gray-600 font-normal w-full px-8 md:w-full">
+            Choose a plan that works best for you.
           </p>
         </div>
         <div className="px-3 lg:px-0 py-14 md:py-24 lg:flex items-center gap-12 space-y-6 lg:space-y-0">
@@ -76,7 +76,7 @@ const Plans = () => {
             </div>
           </div>
           {/* <!-- StartUp Card --> */}
-          <div className="max-w-2xl lg:w-full p-6 lg:px-6 lg:py-9  bg-[#05117c] text-center rounded-xl lg:rounded-3xl text-white border-4 shadow-xl border-white lg:transform lg:scale-125">
+          <div className="max-w-96 lg:w-full p-6 lg:px-6 lg:py-9  bg-[#05117c] text-center rounded-xl lg:rounded-3xl text-white border-4 shadow-xl border-white lg:transform lg:scale-125">
             <h2 className="text-2xl lg:text-3xl pt-2 lg:pt-6 font-bold text-white mb-4">
               Standard Plan – “News Plus”
             </h2>
@@ -120,8 +120,13 @@ const Plans = () => {
               </ul>
 
               <div className="mx-auto text-center mt-12">
-                                  <Link className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white" to={`/subscription`}>Read More</Link>
-                                </div>
+                <Link
+                  className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
+                  to={`/subscription`}
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
             <div className="absolute top-4 right-4">
               <p className="bg-blue-700 font-semibold px-4 py-1 rounded-full uppercase text-xs">
@@ -177,9 +182,14 @@ const Plans = () => {
                 </li>
               </ul>
 
-             <div className="mx-auto text-center mt-12">
-                                 <Link className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white" to={`/subscription`}>Read More</Link>
-                               </div>
+              <div className="mx-auto text-center mt-12">
+                <Link
+                  className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
+                  to={`/subscription`}
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
