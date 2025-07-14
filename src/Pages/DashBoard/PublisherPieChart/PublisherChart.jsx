@@ -67,7 +67,7 @@ const PublisherChart = () => {
   return (
     <div>
 
-      <div className=" flex flex-col lg:flex-row items-center py-12 justify-center">
+      <div className=" flex flex-col lg:flex-row items-center py-12 justify-center gap-6">
         <div className="bg-white p-2 lg:p-4 shadow rounded-xl lg:flex-1 w-11/12 lg:w-full">
         <Chart
           chartType="PieChart"
@@ -76,8 +76,8 @@ const PublisherChart = () => {
           data={chartData}
           options={options}
         />
-      </div>git 
-      <div className="w-11/12 lg:w-full lg:flex-1 bg-white shadow-2xl rounded-xl lg:mx-12 p-3">
+      </div>
+      <div className="w-11/12 lg:w-full lg:flex-1 bg-white shadow-2xl rounded-xl  p-3">
         <Chart
           chartType="ColumnChart"
           width="100%"
@@ -88,7 +88,7 @@ const PublisherChart = () => {
       </div>
       </div>
 
-      <div className="mt-6 lg:mt-22 w-11/12 mx-auto bg-white shadow-2xl rounded-xl mx-3   p-3">
+      <div className="mt-6 lg:mt-22 w-11/12 mx-auto bg-white shadow-2xl rounded-xl   p-3">
         <Chart
           chartType="AreaChart"
           width="100%"
