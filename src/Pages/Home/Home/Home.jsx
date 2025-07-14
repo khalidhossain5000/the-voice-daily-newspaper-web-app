@@ -5,6 +5,7 @@ import Plans from "../PlansSection/Plans";
 import Statistics from "../Statistics/Statistics";
 import ExclusiveNews from "../ExclusiveNewsSection/ExclusiveNews/ExclusiveNews";
 import LatestNews from "../LatestNews/LatestNews";
+import Footer from "../../Shared/Footer/Footer";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
           <Plans />
           <ExclusiveNews/>
           <LatestNews/>
+          <Footer/>
         </div>
       </div>
     </div>
