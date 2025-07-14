@@ -93,20 +93,20 @@ const AddArticle = () => {
   };
 
   return (
-    <div className="bg-[#e8efef] min-h-screen mb-6">
+    <div className="bg-[#e8efef] min-h-screen mb-6 px-3">
       <div className="max-w-7xl w-full mx-auto py-6 lg:py-12 ">
-        <h1 className="text-left text-5xl lg:text-6xl urbanist font-bold text-[#211f54]">
+        <h1 className="text-center md:text-left text-5xl lg:text-6xl urbanist font-bold text-[#211f54]">
           Add Article
         </h1>
       </div>
 
-      <div className="max-w-7xl mx-auto bg-white w-full p-6 shadow-2xl rounded-xl ">
+      <div className="max-w-7xl md:mx-auto bg-white w-full p-6 shadow-2xl rounded-xl ">
         <form onSubmit={handleSubmit(onSubmit)} >
           <div className="text-center">
-            <h2 className="text-gray-800 py-3 text-2xl text-left w-9/12 mx-auto">Add Article</h2>
+            <h2 className="text-gray-800 py-3 text-2xl text-left md:w-9/12 mx-auto">Add Article</h2>
           <input
             type="text"
-            className="mx-auto border border-gray-500 w-9/12 p-2 rounded-md placeholder:text-[#211f54] focus:outline-none
+            className="mx-auto border border-gray-500 w-full md:w-9/12 p-2 rounded-md placeholder:text-[#211f54] focus:outline-none
              focus:ring-0
              focus:shadow-[0_0_0_4px_rgba(33,31,84,0.2)]
              transition duration-300"
@@ -114,7 +114,7 @@ const AddArticle = () => {
             {...register("articleTitle")}
           />
           </div>
-          <div className="mx-auto border border-gray-600 p-6 w-9/12 my-2 rounded-xl shadown-md">
+          <div className="mx-auto border border-gray-600 p-6 md:w-9/12 my-2 rounded-xl shadown-md">
             <label htmlFor="image" className="block text-gray-800 py-3 text-xl">
               Select Article Image:
             </label>
@@ -147,7 +147,7 @@ const AddArticle = () => {
           <div className="">
             <label
             style={{ display: "block", marginTop: "20px", marginBottom: "5px" }}
-            className="block text-gray-800 py-3 text-xl w-9/12 mx-auto"
+            className="block text-gray-800 py-3 text-xl md:w-9/12 mx-auto"
           >
             Tags
           </label>
@@ -162,7 +162,7 @@ const AddArticle = () => {
                 placeholder="Select Tags"
                 onChange={(selectedOptions) => field.onChange(selectedOptions)}
                 value={field.value}
-                className="border border-gray-100 w-9/12 mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
+                className="border border-gray-100 w-full md:w-9/12  mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
              focus:shadow-[0_0_0_4px_rgba(33,31,84,0.2)]
              transition duration-300"
               />
@@ -172,7 +172,7 @@ const AddArticle = () => {
           {/* PUBLISHER DATA */}
           {/* Publisher field */}
           <div>
-            <label style={{ display: "block", marginBottom: "5px" }} className="block text-gray-800 py-3 text-xl w-9/12 mx-auto">
+            <label style={{ display: "block", marginBottom: "5px" }} className="block text-gray-800 py-3 text-xl w-full md:w-9/12 mx-auto">
             Publisher
           </label>
           <Controller
@@ -186,7 +186,7 @@ const AddArticle = () => {
                 onChange={(selectedOption) => field.onChange(selectedOption)}
                 value={field.value}
                 isLoading={isLoading}
-                className="border border-gray-100 w-9/12 mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
+                className="border border-gray-100 w-full md:w-9/12 mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
              focus:shadow-[0_0_0_4px_rgba(33,31,84,0.2)]
              transition duration-300"
               />
@@ -196,7 +196,7 @@ const AddArticle = () => {
            <div className="mx-auto text-center">
             <label
             
-            className="block text-gray-800 py-3 text-xl w-9/12 text-left mx-auto"
+            className="block text-gray-800 py-3 text-xl w-full md:w-9/12 text-left mx-auto"
           >
             Descriptions
           </label>
@@ -204,7 +204,7 @@ const AddArticle = () => {
             rows={3}
             cols={50}
             placeholder="Add Article Details"
-            className="border w-9/12 rounded-xl shadow-sm my-3 p-6 mx-auto"
+            className="border w-full md:w-9/12 rounded-xl shadow-sm my-3 p-6 mx-auto"
             {...register("descriptions")}
           />
            </div>
