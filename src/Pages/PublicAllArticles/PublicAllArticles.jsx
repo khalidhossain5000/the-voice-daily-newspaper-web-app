@@ -14,6 +14,36 @@ const PublicAllArticles = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedPublisher, setSelectedPublisher] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: "white",
+      borderRadius: "0.5rem", // rounded-lg
+      borderColor: state.isFocused ? "#211f54" : "#d1d5db", // ফোকাসে primary color
+      boxShadow: state.isFocused ? "0 0 0 2px rgba(33,31,84,0.4)" : "none", // হালকা glow
+      padding: "4px 8px",
+      cursor: "pointer",
+      transition: "all 0.2s ease",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#6b7280", // gray-500
+      fontWeight: 500,
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#211f54",
+      fontWeight: 600,
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: "#211f54",
+    }),
+    clearIndicator: (provided) => ({
+      ...provided,
+      color: "#211f54",
+    }),
+  };
 
   //getting publisher data from db
   const { data: publishers = [], isLoading: publisherLoading } = useQuery({
@@ -25,14 +55,13 @@ const PublicAllArticles = () => {
   });
   //  Map data to making it usable format for react multi select
   const publisherOptions = publishers.map((pub) => ({
-    value: pub.publisherName,
+    value: pub._id,
     label: pub.publisherName,
   }));
-
-
+console.log("publisher",publishers);
   const publisherValue = selectedPublisher?.value || "";
   const tagsValue = selectedTags.map((tag) => tag.value).join(",");
-  console.log('pub and tag val',publisherValue,tagsValue);
+  console.log("pub and tag val", publisherValue, tagsValue,'selctd publisher',selectedPublisher);
   //ARTICLES DATA LOADING IS RELATED ---->
   const { data: atricles = [], isLoading } = useQuery({
     queryKey: [
@@ -57,25 +86,50 @@ const PublicAllArticles = () => {
   if (isLoading || publisherLoading) return <Loading />;
   return (
     <div className="bg-[#e8efef]">
-      <div className="serch w-64 mx-auto py-12">
+      <h1 className="text-center text-3xl lg:text-5xl font-bold text-[#211f54] py-12 ">
+        All Articles
+      </h1>
+      <div className="serch w-96 mx-auto py-12">
         <input
           type="text"
-          
           placeholder="Search articles by title"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className="input input-bordered w-full max-w-md mb-4"
         />
+
+        <div className="flex max-w-md w-full mb-4 rounded-lg overflow-hidden border border-gray-300 shadow-md">
+          <input
+            type="text"
+            placeholder="Search articles by title"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="flex-grow px-4 py-3 text-gray-900 placeholder-gray-400 
+               focus:outline-cyan-200 "
+          />
+          <button className="bg-[#211f54] hover:bg-[#1a1b4b] text-white font-semibold px-6 py-3 transition-colors duration-300">
+            Search
+          </button>
+        </div>
+
         {/* Publisher Single Select */}
-        <Select
+        {/* <Select
           options={publisherOptions}
           value={selectedPublisher}
           onChange={setSelectedPublisher}
           placeholder="Select Publisher"
           isClearable
           className="mb-4"
+        /> */}
+        <Select
+          options={publisherOptions}
+          value={selectedPublisher}
+          onChange={setSelectedPublisher}
+          placeholder="Select Publisher"
+          isClearable
+          styles={customStyles}
+          className="mb-4"
         />
-
         {/* Tags Multi Select */}
         <Select
           options={tagOptions}
@@ -84,6 +138,7 @@ const PublicAllArticles = () => {
           isMulti
           placeholder="Select Tags"
           className="mb-4"
+          styles={customStyles}
         />
       </div>
 
