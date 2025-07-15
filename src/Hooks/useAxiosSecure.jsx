@@ -10,7 +10,7 @@ const useAxiosSecure = () => {
     
     const navigate = useNavigate();
     axiosSecure.interceptors.request.use(config => {
-        config.headers.Authorization = `Bearer ${user.accessToken}`
+        config.headers.Authorization = `Bearer ${user?.accessToken}`
         return config;
     }, error => {
         return Promise.reject(error);
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(res => {
         return res;
     }, error => {
-        const status = error.status;
+        const status = error?.response?.status;
         if (status === 403) {
             navigate('/forbidden');
         }

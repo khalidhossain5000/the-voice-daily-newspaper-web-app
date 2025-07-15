@@ -8,6 +8,8 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import { FiUpload } from "react-icons/fi";
 import { CircleLoader } from "react-spinners";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 
 
@@ -18,6 +20,7 @@ const AddArticle = () => {
   const [articleSendingLoader,setArticleSendingLoader]=useState(false)
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate=useNavigate()
   //getting publisher data from db
   const { data: publishers = [], isLoading } = useQuery({
     queryKey: ["publishers", user?.email],
@@ -73,6 +76,24 @@ const AddArticle = () => {
       })
       .catch((error) => {
         console.log(error);
+        if (error.response?.status === 403) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Limit Reached',
+        text: 'You already posted one article. Please take premium to post more.',
+        confirmButtonText: 'Get Premium',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+      })
+      .then(result => {
+        if (result.isConfirmed) {
+          // এখানে তুমি ইউজারকে premium subscription page এ redirect করতে পারো
+          navigate('/subscription'); // React Router useNavigate দিয়ে
+        }
+      });
+    } else {
+      Swal.fire('Error', 'Something went wrong!', 'error');
+    }
       });
   };
 
