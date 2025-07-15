@@ -24,6 +24,7 @@ import MyArticles from "../Pages/MyProfile/MyArticle/MyArticles";
 import UpdateMyArticle from "../Pages/MyProfile/MyArticle/UpdateMyArticle/UpdateMyArticle";
 import Test from "../Pages/Subscription/Test";
 import ArticleDetails from "../Pages/ArticleDetails/ArticleDetails";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -156,4 +157,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:'*',
+    Component:ErrorPage
+  }
 ]);
