@@ -1,7 +1,9 @@
 import React from "react";
 import PublisherChart from "../PublisherPieChart/PublisherChart";
 
+
 const DashBoardHome = () => {
+  
   return (
     <div className="py-12 lg:pb-20 overfliw-x-hidden">
       <div className="px-12 w-full lg:w-11/12 mx-auto rounded-2xl shadow-xl mt-3 h-48 bg-gradient-to-tr from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] flex items-center justify-center relative overflow-hidden ">

@@ -35,16 +35,16 @@ const LogIn = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bgImg})` }}
-      className="bg-cover bg-no-repeat py-14 lg:py-36 min-h-screen"
+      className="bg-cover bg-no-repeat py-14 lg:py-36 min-h-screen px-2 lg:px-0"
     >
       {/* Login form card */}
       <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-auto overflow-hidden">
         {/* top accent bar */}
         <div className="bg-[#0f1e3d] h-2"></div>
 
-        <div className="p-8">
+        <div className="p-6 lg:p-8">
           {/* Title */}
-          <h1 className="text-3xl lg:text-5xl font-bold text-[#0f1e3d] mb-6 lg:mb-12">
+          <h1 className="text-2xl text-center lg:text-left lg:text-5xl font-bold text-[#0f1e3d] mb-6 lg:mb-12">
             Login
           </h1>
 

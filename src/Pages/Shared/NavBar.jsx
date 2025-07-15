@@ -2,9 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
+import useRole from "../../Hooks/useRole";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
+  const {role,roleLoading}=useRole()
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -25,9 +27,11 @@ const NavBar = () => {
       <li>
         <NavLink to='/subscription'>Subscription</NavLink>
       </li>
-      <li>
-        <NavLink to='/dashboard'>DashBoard(C)</NavLink>
-      </li>
+      {!roleLoading && role === "admin" && (
+  <li>
+    <NavLink to='/dashboard'>Dashboard (C)</NavLink>
+  </li>
+)}
       <li>
         <NavLink to='/my-articles'>My Articles</NavLink>
       </li>

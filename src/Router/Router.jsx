@@ -26,6 +26,8 @@ import Test from "../Pages/Subscription/Test";
 import ArticleDetails from "../Pages/ArticleDetails/ArticleDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import MyArticleNav from "../Pages/MyProfile/MyArticle/MyArticleNav/MyArticleNav";
+import Forbidden from "../Pages/ForbiddenPage/Forbidden";
+import AdminRoute from "../Routes/AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -115,7 +117,9 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <PrivateRoute>
+        <AdminRoute>
         <DashBoardLayout />
+        </AdminRoute>
       </PrivateRoute>
     ),
     children: [
@@ -168,5 +172,9 @@ export const router = createBrowserRouter([
   {
     path:'*',
     Component:ErrorPage
+  },
+  {
+    path:'forbidden',
+    Component:Forbidden
   }
 ]);
