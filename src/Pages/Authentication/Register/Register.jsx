@@ -7,6 +7,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import useAxios from "../../../Hooks/useAxios";
 import { FiUpload } from "react-icons/fi";
 import bgImg from "../../../assets/authBg/bg-img.jpg";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [profilePic, setProfilePic] = useState("");
@@ -39,8 +40,8 @@ const Register = () => {
     // password validation end
     createUser(email, password)
       .then((result) => {
-        alert("User created");
-        console.log(result);
+        
+        
         const user = result.user;
         //SENDING USER INFO TO THE DB
         const userInfo = {
@@ -52,9 +53,8 @@ const Register = () => {
         };
         axiosInstance
           .post("/users", userInfo)
-          .then((res) => {
-            alert("user sended to db");
-            console.log(res);
+          .then(() => {
+            
           })
           .catch((error) => {
             console.log(error);
@@ -65,9 +65,23 @@ const Register = () => {
           photoURL: profilePic,
         };
         updateUserProfile(userProfile)
+        // success toast
           .then(() => {
             console.log("profile name pic updated");
             setUser({ ...user, displayName: name, photoURL: profilePic });
+            toast.success(`User Registered SuccessFully`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #050342,#01c3f4 )"
+          },
+        });
             navigate(from);
           })
           .catch((error) => {
@@ -237,109 +251,10 @@ const Register = () => {
           </div>
         </div>
       </div>
+
     </div>
 
-    // <div className="flex justify-center items-center min-h-screen bg-white">
-    //   <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-    //     <div className="mb-8 text-center">
-    //       <h1 className="my-3 text-4xl font-bold">Register</h1>
-    //       <p className="text-sm text-gray-400">Welcome to NewsPaper</p>
-    //     </div>
-    //     <form
-    //       onSubmit={handleSubmit}
-    //       className="space-y-6 ng-untouched ng-pristine ng-valid"
-    //     >
-    //       <div className="space-y-4">
-    //         <div>
-    //           <label htmlFor="email" className="block mb-2 text-sm">
-    //             Name
-    //           </label>
-    //           <input
-    //             type="text"
-    //             name="name"
-    //             id="name"
-    //             placeholder="Enter Your Name Here"
-    //             className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
-    //             data-temp-mail-org="0"
-    //           />
-    //         </div>
-    //         <div>
-    //           <label htmlFor="image" className="block mb-2 text-sm">
-    //             Select Image:
-    //           </label>
-    //           <input
-    //             onChange={handleImageUpload}
-    //             className="bg-gray-200 cursor-pointer"
-    //             type="file"
-    //             id="image"
-    //             name="image"
-    //             accept="image/*"
-    //           />
-    //         </div>
-    //         <div>
-    //           <label htmlFor="email" className="block mb-2 text-sm">
-    //             Email address
-    //           </label>
-    //           <input
-    //             type="email"
-    //             name="email"
-    //             id="email"
-    //             required
-    //             placeholder="Enter Your Email Here"
-    //             className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
-    //             data-temp-mail-org="0"
-    //           />
-    //         </div>
-    //         <div>
-    //           <div className="flex justify-between">
-    //             <label htmlFor="password" className="text-sm mb-2">
-    //               Password
-    //             </label>
-    //           </div>
-    //           <input
-    //             type="password"
-    //             name="password"
-    //             autoComplete="new-password"
-    //             id="password"
-    //             required
-    //             placeholder="*******"
-    //             className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
-    //           />
-    //         </div>
-    //       </div>
-    //       {/* password error */}
-    //       <div className="py-2 w-full">
-    //         {passwordError && (
-    //           <h2 className="text-red-600 text-xl ">{passwordError}</h2>
-    //         )}
-    //         *
-    //       </div>
-    //       <div>
-    //         <button
-    //           type="submit"
-    //           className="bg-lime-500 w-full rounded-md py-3 text-white"
-    //         >
-    //           {loading ? (
-    //             <TbFidgetSpinner className="animate-spin m-auto" />
-    //           ) : (
-    //             "Continue"
-    //           )}
-    //         </button>
-    //       </div>
-    //     </form>
-    //     <SocialLogin />
-    //     <p className="px-6 text-sm text-center text-gray-400">
-    //       Already have an account?{" "}
-    //       <Link
-    //         to="/login"
-    //         className="hover:underline hover:text-lime-500 text-gray-600"
-    //       >
-    //         Login
-    //       </Link>
-    //       .
-    //     </p>
-    //   </div>
-    // </div>
+    
   );
 };
 

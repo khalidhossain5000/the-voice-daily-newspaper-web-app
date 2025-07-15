@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 import bgImg from "../../../assets/authBg/bg-img.jpg";
+import toast from "react-hot-toast";
 
 const LogIn = () => {
   const { logInUser, loading } = useAuth();
@@ -23,7 +24,19 @@ const LogIn = () => {
     logInUser(email, password)
       .then((result) => {
         console.log(result);
-        alert("log in success");
+        toast.success(`Log In SuccessFull`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #050342,#01c3f4 )"
+          },
+        });
         navigate(from);
       })
       .catch((error) => {

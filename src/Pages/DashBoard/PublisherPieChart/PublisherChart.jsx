@@ -28,7 +28,7 @@ const PublisherChart = () => {
       return res.data;
     },
   });
-  console.log(data);
+ 
   if (isLoading) return <p>Loading...</p>;
   // 🛠️ Pie chart format
   const chartData = [["Publisher", "Articles"]];

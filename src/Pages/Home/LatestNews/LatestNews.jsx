@@ -19,7 +19,7 @@ const LatestNews = () => {
   });
 
   if (isLoading) return <Loading />;
-  console.log(latestNews);
+  
 
   return (
     <div className="py-24">
