@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 const LogIn = () => {
   const { logInUser, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-
+const [wrongPassword, setWrongPassword] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from || "/";
@@ -40,6 +40,23 @@ const LogIn = () => {
         navigate(from);
       })
       .catch((error) => {
+        setWrongPassword("Opps-Wrong password or email--Try again");
+        const errorCode = error.code;
+        toast.success(`Opps--${errorCode}`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#f7856c",
+            secondary: "#d70309",
+          },
+          style: {
+            border: "1px solid blue",
+            color: "white",
+            backgroundImage:
+              "linear-gradient(to bottom right,#6c0000,#c8040c, #a00006)",
+          },
+        });
+
         console.log(error);
       });
   };
@@ -50,6 +67,7 @@ const LogIn = () => {
       style={{ backgroundImage: `url(${bgImg})` }}
       className="bg-cover bg-no-repeat py-14 lg:py-36 min-h-screen px-2 lg:px-0"
     >
+      
       {/* Login form card */}
       <div className="bg-white rounded-xl shadow-xl w-full max-w-lg mx-auto overflow-hidden">
         {/* top accent bar */}
@@ -111,6 +129,12 @@ const LogIn = () => {
             {/* Submit */}
 
             <div>
+              {/* wrong pass */}
+                <div>
+                  {wrongPassword && (
+                    <h2 className="text-xl text-red-600">{wrongPassword}</h2>
+                  )}
+                </div>
               <button
                 type="submit"
                 className="w-full bg-[#0f1e3d] text-white py-3 rounded-lg
@@ -119,7 +143,7 @@ const LogIn = () => {
                 {loading ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />
                 ) : (
-                  "Continue"
+                  "Login"
                 )}
               </button>
             </div>

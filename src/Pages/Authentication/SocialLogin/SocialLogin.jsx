@@ -2,28 +2,65 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router";
+import toast from "react-hot-toast";
+import useAxios from "../../../Hooks/useAxios";
 const SocialLogin = () => {
   const { signInWithGoogle } = useAuth();
   const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
-
+  const axiosInstance=useAxios()
+  const {setUser,updateUserProfile}=useAuth()
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(async (result) => {
-        // const user = result.user;
-        console.log(result.user);
-        // update userinfo in the database
-        // const userInfo = {
-        //     email: user.email,
-        //     role: 'user', // default role
-        //     created_at: new Date().toISOString(),
-        //     last_log_in: new Date().toISOString()
-        // }
-
-        // const res = await axiosInstance.post('/users', userInfo);
-        // console.log('user update info', res.data)
-
+        
+const user = result.user;
+        //SENDING USER INFO TO THE DB
+        const userInfo = {
+          name:user?.displayName,
+          email:user?.email,
+          role: "user", //default role
+          profilePic:user?.photoURL,
+          premiumInfo: null,
+        };
+        axiosInstance
+          .post("/users", userInfo)
+          .then((res) => {
+            console.log(res);
+            alert("data send to mongo")
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // update user profile in firebase
+        const userProfile = {
+          displayName: user?.displayName,
+          photoURL: user?.photoURL,
+        };
+        updateUserProfile(userProfile)
+        // success toast
+          .then(() => {
+            console.log("profile name pic updated");
+            setUser({ ...user, displayName: user?.displayName, photoURL: user?.photoURL });
+            toast.success(`User Registered SuccessFully`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #050342,#01c3f4 )"
+          },
+        });
+            navigate(from);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         navigate(from);
       })
       .catch((error) => {
