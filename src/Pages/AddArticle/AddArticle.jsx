@@ -114,7 +114,7 @@ const AddArticle = () => {
             {...register("articleTitle")}
           />
           </div>
-          <div className="mx-auto border border-gray-600 p-6 md:w-9/12 my-2 rounded-xl shadown-md">
+          <div className="mx-auto border border-gray-600 p-6 md:w-9/12 my-2 rounded-xl shadow-md">
             <label htmlFor="image" className="block text-gray-800 py-3 text-xl">
               Select Article Image:
             </label>
