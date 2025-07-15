@@ -64,3 +64,21 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* sweet alert custom background color */
+.gradient-bg{
+  
+  background: linear-gradient(to bottom right,  #03012a,  #090979) !important;
+  font-size: 20px;
+}
+.error-gradient-bg{
+  
+  background: linear-gradient(to bottom right,  #ac0000, #dc2430, #fb0000) !important;
+  font-size: 20px;
+}
+
+
+.premium-bg{
+  background: linear-gradient(to bottom right,  #C02425, #F0CB35) !important;
+  font-size: 20px;
+}

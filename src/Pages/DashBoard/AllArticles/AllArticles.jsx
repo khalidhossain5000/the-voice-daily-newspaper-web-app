@@ -115,7 +115,7 @@ const AllArticles = () => {
           const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
           if (res.data.modifiedCount > 0) {
             Swal.fire("Success!", "Article is now premium.", "success");
-            refetch(); 
+            refetch();
           } else {
             Swal.fire("Failed", "Could not update article.", "error");
           }
@@ -141,7 +141,7 @@ const AllArticles = () => {
           const res = await axiosSecure.delete(`/articles/${articleId}`);
           if (res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "The article has been deleted.", "success");
-            refetch(); 
+            refetch();
           } else {
             Swal.fire("Failed!", "Could not delete the article.", "error");
           }
@@ -252,11 +252,11 @@ const AllArticles = () => {
                       decline
                     </button> */}
                     <button
-  onClick={() => openDeclineModal(article)}
-  className="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
->
-  Decline
-</button>
+                      onClick={() => openDeclineModal(article)}
+                      className="bg-red-600 hover:bg-red-700 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
+                    >
+                      Decline
+                    </button>
                   </div>
                   <div className="flex items-center gap-6">
                     {/* <button
@@ -266,11 +266,11 @@ const AllArticles = () => {
                       Delete
                     </button> */}
                     <button
-  onClick={() => handleDelete(article._id)}
-  className="bg-red-700 hover:bg-red-800 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
->
-  Delete
-</button>
+                      onClick={() => handleDelete(article._id)}
+                      className="bg-red-700 hover:bg-red-800 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer"
+                    >
+                      Delete
+                    </button>
 
                     {/* <button
                       onClick={() => handleMakePremium(article._id)}
@@ -278,12 +278,16 @@ const AllArticles = () => {
                     >
                       Make Premium
                     </button> */}
-                    <button
-  onClick={() => handleMakePremium(article._id)}
-  className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-md hover:scale-105 transition duration-200 cursor-pointer"
->
-  Make Premium
-</button>
+                    {
+                      article?.isPremium ? <h2 className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-md text-black font-bold cursor-not-allowed rounded-xl text-center">already Premium</h2> : <button
+                      onClick={() => handleMakePremium(article._id)}
+                      className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-md hover:scale-105 transition duration-200 cursor-pointer"
+                    >
+                      Make Premium
+                    </button>
+                    }
+
+
 
                   </div>
                 </td>

@@ -74,6 +74,15 @@ const PaymentForm = () => {
             icon: "success",
             title: "Payment Successful!",
             html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
+            buttonsStyling: false,
+            color:'#000000',
+            customClass: {
+              popup: "premium-bg",
+              confirmButton:
+                "bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 hover:bg-yellow-500  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+              cancelButton:
+                "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+            },
             confirmButtonText: "Ok",
           });
         }
