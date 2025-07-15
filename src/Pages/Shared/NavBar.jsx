@@ -41,7 +41,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="bg-white py-6">
+    <div className="bg-white py-6 shadow-xl">
       <div className="hidden md:flex items-center">
         <div className="links max-w-7xl mx-auto">
           <ul className="flex items-center gap-3 text-[17px] font-semibold text-[#0b0f32] inter">{links}</ul>

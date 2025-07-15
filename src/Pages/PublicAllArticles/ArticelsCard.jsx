@@ -22,7 +22,7 @@ const ArticelsCard = ({ article }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   //fetch current logged in user data from mongodb FOR CHECKING PREMIUM STATS
-  const { data: currentLogInUserDbData, isLoading } = useQuery({
+  const { data: currentLogInUserDbData, isPending } = useQuery({
     queryKey: ["log-in-user", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/user?email=${user?.email}`);
@@ -30,7 +30,7 @@ const ArticelsCard = ({ article }) => {
     },
   });
 
-  if (isLoading) return <Loading />;
+  if (isPending) return <Loading />;
   // Check if user has active subscription
   const isUserPremium =
     currentLogInUserDbData?.premiumInfo &&
