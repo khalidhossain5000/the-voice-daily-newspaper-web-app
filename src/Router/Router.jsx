@@ -25,6 +25,8 @@ import UpdateMyArticle from "../Pages/MyProfile/MyArticle/UpdateMyArticle/Update
 import Test from "../Pages/Subscription/Test";
 import ArticleDetails from "../Pages/ArticleDetails/ArticleDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import MyArticleNav from "../Pages/MyProfile/MyArticle/MyArticleNav/MyArticleNav";
+
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +82,12 @@ export const router = createBrowserRouter([
       {
         path: "allArticles",
         Component: PublicAllArticles,
+      },
+      {
+        path:'my-articles',
+        element:<PrivateRoute>
+          <MyArticleNav></MyArticleNav>
+        </PrivateRoute>
       },
       {
         path: "test",
