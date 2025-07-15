@@ -25,8 +25,8 @@ const LatestNews = () => {
     <div className="py-24">
       <h1 className="text-5xl font-bold text-center py-12">Latest News</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-6">
-        {latestNews.map((news) => (
-          <div className=" p-1 rounded-xl max-w-sm mx-auto mt-8">
+        {latestNews.map((news,i) => (
+          <div key={i} className=" p-1 rounded-xl max-w-sm mx-auto mt-8">
             <div className="bg-gray-900 rounded-lg overflow-hidden cursor-pointer h-full">
               <img
                 src={news.articlePic}
