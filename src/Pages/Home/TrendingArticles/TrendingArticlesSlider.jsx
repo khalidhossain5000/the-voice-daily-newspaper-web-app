@@ -15,6 +15,8 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import useAxios from "../../../Hooks/useAxios";
 import { FaGripfire } from "react-icons/fa";
+
+
 const TrendingArticlesSlider = () => {
   const { user } = useAuth();
   const axionsInstance = useAxios()

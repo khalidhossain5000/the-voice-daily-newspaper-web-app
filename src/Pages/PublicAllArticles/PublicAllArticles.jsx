@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import { tagOptions } from "../AddArticle/Data/TagOptions";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +14,8 @@ const PublicAllArticles = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedPublisher, setSelectedPublisher] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
+  const inputRef = useRef(null);
+
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -58,10 +60,16 @@ const PublicAllArticles = () => {
     value: pub._id,
     label: pub.publisherName,
   }));
-console.log("publisher",publishers);
+
   const publisherValue = selectedPublisher?.value || "";
   const tagsValue = selectedTags.map((tag) => tag.value).join(",");
-  console.log("pub and tag val", publisherValue, tagsValue,'selctd publisher',selectedPublisher);
+  console.log(
+    "pub and tag val",
+    publisherValue,
+    tagsValue,
+    "selctd publisher",
+    selectedPublisher
+  );
   //ARTICLES DATA LOADING IS RELATED ---->
   const { data: atricles = [], isLoading } = useQuery({
     queryKey: [
@@ -82,7 +90,10 @@ console.log("publisher",publishers);
       return res.data;
     },
   });
-
+  // রেন্ডার হওয়ার পর ফোকাস রেখে দাও
+  useEffect(() => {
+    inputRef.current?.focus();
+  });
   if (isLoading || publisherLoading) return <Loading />;
   return (
     <div className="bg-[#e8efef]">
@@ -90,16 +101,9 @@ console.log("publisher",publishers);
         All Articles
       </h1>
       <div className="serch w-96 mx-auto py-12">
-        <input
-          type="text"
-          placeholder="Search articles by title"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          className="input input-bordered w-full max-w-md mb-4"
-        />
-
         <div className="flex max-w-md w-full mb-4 rounded-lg overflow-hidden border border-gray-300 shadow-md">
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search articles by title"
             value={searchText}
