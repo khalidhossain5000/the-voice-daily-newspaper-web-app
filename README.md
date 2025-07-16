@@ -11,7 +11,7 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 
 
 ## 🚀🚀 Live Site :
- https://assingnment-12-newspaper-web-app-full.netlify.app/
+ https://assignment-12-newspaper-full-web-app.netlify.app/allArticles
 
  ## Admin Login Info :
 
