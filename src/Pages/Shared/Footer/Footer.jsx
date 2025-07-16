@@ -17,10 +17,10 @@ const Footer = () => {
         <NavLink to="/subscription">Subscription</NavLink>
       </li>
       <li>
-        <NavLink to="/premium-articles">Premium Articles(C)</NavLink>
+        <NavLink to="/premium-articles">Premium Articles</NavLink>
       </li>
       <li className="inter">
-        <NavLink to="/allArticles">All Articles(C)</NavLink>
+        <NavLink to="/allArticles">All Articles</NavLink>
       </li>
     </>
   );

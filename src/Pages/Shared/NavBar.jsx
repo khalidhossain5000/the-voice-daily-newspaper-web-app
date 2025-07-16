@@ -46,17 +46,17 @@ const NavBar = () => {
       </li>
       {!roleLoading && role === "admin" && (
         <li>
-          <NavLink to="/dashboard">Dashboard (C)</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
       )}
       <li>
         <NavLink to="/my-articles">My Articles</NavLink>
       </li>
       <li>
-        <NavLink to="/premium-articles">Premium Articles(C)</NavLink>
+        <NavLink to="/premium-articles">Premium Articles</NavLink>
       </li>
       <li className="inter">
-        <NavLink to="/allArticles">All Articles(C)</NavLink>
+        <NavLink to="/allArticles">All Articles</NavLink>
       </li>
     </>
   );
