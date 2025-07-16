@@ -96,7 +96,7 @@ useEffect(() => {
 
   
   const onSubmit = (data) => {
-    // console.log("this is data", data);
+    
     const updatedArticleData = {
       ...data,
       articlePic,

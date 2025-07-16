@@ -67,7 +67,7 @@ const Register = () => {
         updateUserProfile(userProfile)
         // success toast
           .then(() => {
-            console.log("profile name pic updated");
+            
             setUser({ ...user, displayName: name, photoURL: profilePic });
             toast.success(`User Registered SuccessFully`, {
           className: "w-[300px] h-[100px] text-xl font-bold ",

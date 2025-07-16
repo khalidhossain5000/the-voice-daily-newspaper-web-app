@@ -15,7 +15,7 @@ const MyProfile = () => {
     },
   });
   //   const isPremiumUser=currentUserFromDbData?.premiumInfo
-  //   console.log(isPremiumUser);
+  
   if (isLoading) return <Loading />
   return (
     <div className="w-full mx-auto bg-[#e4ebeb] rounded-2xl shadow-2xl pb-12">

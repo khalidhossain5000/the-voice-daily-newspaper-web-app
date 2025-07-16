@@ -26,8 +26,8 @@ const user = result.user;
         };
         axiosInstance
           .post("/users", userInfo)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
+            
             
           })
           .catch((error) => {
@@ -41,7 +41,7 @@ const user = result.user;
         updateUserProfile(userProfile)
         // success toast
           .then(() => {
-            console.log("profile name pic updated");
+            
             setUser({ ...user, displayName: user?.displayName, photoURL: user?.photoURL });
             toast.success(`User Registered SuccessFully`, {
           className: "w-[300px] h-[100px] text-xl font-bold ",

@@ -17,7 +17,7 @@ const SubscriptionRoute = ({ children }) => {
       return res.data;
     },
   });
-console.log(currentLogInUserDbData);
+
   const location = useLocation();
   if (isPending) return <Loading />;
   
@@ -25,7 +25,7 @@ console.log(currentLogInUserDbData);
   // Check if user has valid premiumTaken
   const isPremium =
     currentLogInUserDbData?.premiumInfo && new Date(currentLogInUserDbData.premiumInfo) > new Date();
-  console.log("ispremium", isPremium);
+  
 
   
   if (!user || !isPremium) {

@@ -30,8 +30,8 @@ const ArticleDetails = () => {
   }, [axiosSecure, id, refetch]);
 
   if (isLoading) return <Loading />;
-console.log(article?.publisher?.label);
-  // console.log("thisis article",article);
+
+  
   return (
     <div>
       {/* <h1 className="text-2xl text-center py-12 font-bold">

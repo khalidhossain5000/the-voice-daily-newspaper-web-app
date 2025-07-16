@@ -10,7 +10,7 @@ import useAuth from "../Hooks/useAuth";
 
 const DashBoardLayout = () => {
   const { user } = useAuth();
-  console.log(user);
+  
   const handleDrawerClose = () => {
     const drawerCheckbox = document.getElementById("my-drawer-2");
     if (drawerCheckbox) {

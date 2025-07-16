@@ -47,7 +47,7 @@ const AddArticle = () => {
   });
 
   const onSubmit = (data) => {
-    // console.log("this is data", data);
+    
     const articlesData = {
       authorName: user?.displayName,
       authorEmail: user?.email,
@@ -65,7 +65,7 @@ const AddArticle = () => {
     axiosSecure
       .post("/articles", articlesData)
       .then((res) => {
-        console.log(res);
+        
         if (res.data.insertedId) {
           Swal.fire({
             title: "Article Submitted Successfully",

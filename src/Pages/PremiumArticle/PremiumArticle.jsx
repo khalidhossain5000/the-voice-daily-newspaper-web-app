@@ -17,7 +17,7 @@ const PremiumArticle = () => {
             return res.data
         }
     })
-console.log(premiumArticles);
+
     if(isLoading) return <Loading/>
     return (
         <div className='bg-[#e8efef] py-12'>

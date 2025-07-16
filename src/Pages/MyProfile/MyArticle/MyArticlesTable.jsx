@@ -70,7 +70,7 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
     });
   };
   const { articleTitle, isPremium } = myArticle;
-  // console.log(myArticle);
+ 
   return (
     <tr>
       <th>{serial + 1}</th>

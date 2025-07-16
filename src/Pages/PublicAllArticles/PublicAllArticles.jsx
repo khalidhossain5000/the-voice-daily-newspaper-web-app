@@ -68,13 +68,7 @@ console.log(publisherOptions,"thi sis options of the publisher");
 
   const publisherValue = selectedPublisher?.value || "";
   const tagsValue = selectedTags.map((tag) => tag.value).join(",");
-  console.log(
-    "pub and tag val",
-    publisherValue,
-    tagsValue,
-    "selctd publisher",
-    selectedPublisher
-  );
+  
 
   
   //ARTICLES DATA LOADING IS RELATED ---->
@@ -97,8 +91,7 @@ console.log(publisherOptions,"thi sis options of the publisher");
       return res.data;
     },
   });
-  console.log("all public articles",atricles);
-  console.log("search text",searchText);
+  
   useEffect(() => {
     inputRef.current?.focus();
   });

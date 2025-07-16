@@ -22,8 +22,8 @@ const [wrongPassword, setWrongPassword] = useState("");
     const password = form.password.value;
 
     logInUser(email, password)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        
         toast.success(`Log In SuccessFull`, {
           className: "w-[300px] h-[100px] text-xl font-bold ",
           removeDelay: 1000,

@@ -21,14 +21,14 @@ const PaymentForm = () => {
   const navigate = useNavigate();
   const from = location.state?.from || "/premium-articles";
   const { amount, duration } = location.state || {};
-  //   console.log(duration);
+ 
   const { user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
     const amountInCents = amount * 100;
-    console.log("in centes", amountInCents);
+    
     setProcessing(true);
 
     // Step 1: Create payment intent on backend

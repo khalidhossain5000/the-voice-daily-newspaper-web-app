@@ -11,7 +11,7 @@ const UpdateProfile = () => {
   const [updatedPic, setUpdatedPic] = useState(user?.photoURL);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [updatingLoader,setUpdatingLoader]=useState(false)
-  console.log("updadte dpi", updatedPic);
+ 
   const axiosSecure = useAxiosSecure();
   const handleSubmit = async (e) => {
     e.preventDefault();

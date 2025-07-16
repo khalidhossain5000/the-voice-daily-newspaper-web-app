@@ -55,7 +55,7 @@ useEffect(() => {
   if (isPending) return <Loading />;
 
 
-  // console.log(trendingArticles);
+  
   //attaching bg images to the data
   const sliderData = trendingArticles.map((article, i) => ({
     ...article,

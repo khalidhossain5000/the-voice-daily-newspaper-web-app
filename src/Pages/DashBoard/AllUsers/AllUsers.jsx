@@ -25,7 +25,7 @@ const AllUsers = () => {
   });
   const totalPages = Math.ceil(data.total / limit);
   const handleMakeAdmin = async (id) => {
-    console.log(id);
+    
     try {
       await axiosSecure.patch(`/users/admin/${id}`);
       refetch();

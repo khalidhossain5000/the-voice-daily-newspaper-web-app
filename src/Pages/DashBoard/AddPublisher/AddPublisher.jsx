@@ -18,7 +18,7 @@ const AddPublisher = () => {
     axiosSecure
       .post("/publishers", publsiherData)
       .then((res) => {
-        console.log(res.data);
+        
         if (res.data.publisherId) {
            toast.success(`Publisher Added SuccessFully`, {
           className: "w-[300px] h-[100px] text-xl font-bold ",
@@ -38,7 +38,7 @@ const AddPublisher = () => {
       .catch((error) => {
         console.log(("this is ", error));
       });
-    console.log("publisher name", publisherName);
+    
   };
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];
@@ -53,7 +53,7 @@ const AddPublisher = () => {
 
     setPublisherPic(res.data.data.url);
   };
-  console.log("publisherPic", publisherPic);
+  
   return (
     <div>
       <div className="px-12 w-full lg:w-11/12 mx-auto rounded-2xl shadow-xl h-48 bg-gradient-to-tr from-[#F4F6FE] via-[#E0E2F0] to-[#D4D7E3] flex items-center justify-center relative overflow-hidden ">

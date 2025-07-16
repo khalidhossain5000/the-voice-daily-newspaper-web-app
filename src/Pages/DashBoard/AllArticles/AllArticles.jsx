@@ -55,7 +55,7 @@ const AllArticles = () => {
   });
   const totalPages = Math.ceil(data.total / limit);
 
-  console.log(data, "dattatat");
+  
 
   if (isLoading) return <Loading />;
 
