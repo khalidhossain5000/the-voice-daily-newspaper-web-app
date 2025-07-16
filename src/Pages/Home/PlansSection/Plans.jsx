@@ -81,7 +81,7 @@ const Plans = () => {
                   className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
                   to={`/subscriptions`}
                 >
-                  Read More
+                  Go Premium
                 </Link>
               </div>
             </div>
@@ -135,7 +135,7 @@ const Plans = () => {
                   className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
                   to={`/subscription`}
                 >
-                  Read More
+                  Go Premium
                 </Link>
               </div>
             </div>
@@ -198,7 +198,7 @@ const Plans = () => {
                   className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white"
                   to={`/subscription`}
                 >
-                  Read More
+                  Go Premium
                 </Link>
               </div>
             </div>

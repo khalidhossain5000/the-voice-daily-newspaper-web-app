@@ -27,6 +27,8 @@ const MyArticles = () => {
           </div>
             
 
+         
+
              <div className="overflow-x-auto rounded-box border border-gray-300 shadow-xl max-w-7xl mx-auto mt-6 lg:mt-12">
         <table className="table">
           {/* head */}

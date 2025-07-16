@@ -3,18 +3,21 @@ import Select from "react-select";
 import { tagOptions } from "../AddArticle/Data/TagOptions";
 import { useQuery } from "@tanstack/react-query";
 
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Loading from "../Shared/Loading/Loading";
 import ArticelsCard from "./ArticelsCard";
+import useAxios from "../../Hooks/useAxios";
 
 const PublicAllArticles = () => {
-  const axiosSecure = useAxiosSecure();
+  
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
   const [selectedPublisher, setSelectedPublisher] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const inputRef = useRef(null);
+
+  const axiosInstance=useAxios()
+
 
   const customStyles = {
     control: (provided, state) => ({
@@ -51,7 +54,7 @@ const PublicAllArticles = () => {
   const { data: publishers = [], isLoading: publisherLoading } = useQuery({
     queryKey: ["publishers", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get("/publishers");
+      const res = await axiosInstance.get("/publishers");
       return res.data;
     },
   });
@@ -60,6 +63,8 @@ const PublicAllArticles = () => {
     value: pub._id,
     label: pub.publisherName,
   }));
+
+console.log(publisherOptions,"thi sis options of the publisher");
 
   const publisherValue = selectedPublisher?.value || "";
   const tagsValue = selectedTags.map((tag) => tag.value).join(",");
@@ -70,17 +75,19 @@ const PublicAllArticles = () => {
     "selctd publisher",
     selectedPublisher
   );
+
+  
   //ARTICLES DATA LOADING IS RELATED ---->
   const { data: atricles = [], isLoading } = useQuery({
     queryKey: [
       "articles",
-      user?.email,
       searchText,
       selectedPublisher,
       selectedTags,
+      
     ],
     queryFn: async () => {
-      const res = await axiosSecure.get("/articles/approved", {
+      const res = await axiosInstance.get("/articles/approved", {
         params: {
           search: searchText,
           publisher: publisherValue,
@@ -90,7 +97,8 @@ const PublicAllArticles = () => {
       return res.data;
     },
   });
-  // রেন্ডার হওয়ার পর ফোকাস রেখে দাও
+  console.log("all public articles",atricles);
+  console.log("search text",searchText);
   useEffect(() => {
     inputRef.current?.focus();
   });

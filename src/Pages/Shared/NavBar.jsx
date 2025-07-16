@@ -80,15 +80,24 @@ const NavBar = () => {
 
               <button
                 onClick={handleLogOut}
-                className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md"
+                className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#00b8db] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md"
               >
                 Log Out
               </button>
             </div>
           ) : (
-            <Link to="/auth/login" className="btn btn-md btn-success">
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+              
+              <Link to="/auth/login" className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300">
               Login
             </Link>
+            
+            <Link to="/auth/register" className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300">
+              Register
+            </Link>
+            
+            
+            </div>
           )}
         </div>
       </div>

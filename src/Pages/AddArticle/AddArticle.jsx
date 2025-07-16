@@ -7,9 +7,10 @@ import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import { FiUpload } from "react-icons/fi";
-import { CircleLoader } from "react-spinners";
+
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import FormLoading from "../Shared/Loading/FormLoading";
 
 const AddArticle = () => {
   const [articlePic, setArticlePic] = useState("");
@@ -259,7 +260,7 @@ const AddArticle = () => {
           <div className="text-center">
             {articleSendingLoader ? (
               <div className="w-9/12 mx-auto text-3xl">
-                <CircleLoader />
+                <FormLoading/>
               </div>
             ) : (
               <input

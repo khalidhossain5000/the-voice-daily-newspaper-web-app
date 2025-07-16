@@ -62,6 +62,7 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
   return (
     <tr>
       <th>{serial + 1}</th>
+      
       <td className="line-clamp-2">
         {/* {articleTitle.split(" ").slice(0, 15).join(" ")}....... */}
         {articleTitle}

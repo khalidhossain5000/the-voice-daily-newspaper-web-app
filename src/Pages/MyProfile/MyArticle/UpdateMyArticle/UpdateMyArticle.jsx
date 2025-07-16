@@ -22,7 +22,8 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loading from "../../../Shared/Loading/Loading";
 import { FiUpload } from "react-icons/fi";
 import toast from "react-hot-toast";
-import { CircleLoader } from "react-spinners";
+
+import FormLoading from "../../../Shared/Loading/FormLoading";
 const UpdateMyArticle = () => {
   const [articlePic, setArticlePic] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -284,7 +285,11 @@ setUpdateLoading(true)
         /> */}
         <div className="text-center">
             {
-              updateLoading ? <div className="w-9/12 mx-auto text-3xl"><CircleLoader /></div>: <input className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white cursor-pointer lg:w-9/12 mx-auto" type="submit" value="Update Article"/>
+              updateLoading ? <div className="w-9/12 mx-auto text-3xl">
+                
+                <FormLoading/>
+              
+              </div>: <input className="mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white cursor-pointer lg:w-9/12 mx-auto" type="submit" value="Update Article"/>
             }
             
 
