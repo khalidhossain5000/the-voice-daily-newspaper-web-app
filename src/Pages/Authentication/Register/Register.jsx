@@ -159,7 +159,7 @@ const Register = () => {
                 htmlFor="image"
                 className="block text-gray-800 p-3 text-xl"
               >
-                Select Article Image:
+                Select Profile Image:
               </label>
               {previewUrl && (
                 <img

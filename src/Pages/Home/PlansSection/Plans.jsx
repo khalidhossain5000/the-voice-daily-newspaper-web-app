@@ -87,7 +87,7 @@ const Plans = () => {
             </div>
           </div>
           {/* <!-- StartUp Card --> */}
-          <div className="max-w-96 lg:w-full p-6 lg:px-6 lg:py-9  bg-[#05117c] text-center rounded-xl lg:rounded-3xl text-white border-4 shadow-xl border-white lg:transform lg:scale-125">
+          <div className="relative max-w-96 lg:w-full p-6 lg:px-6 lg:py-9  bg-[#05117c] text-center rounded-xl lg:rounded-3xl text-white border-4 shadow-xl border-white lg:transform lg:scale-125">
             <h2 className="text-2xl lg:text-3xl pt-2 lg:pt-6 font-bold text-white mb-4">
               Standard Plan – “News Plus”
             </h2>

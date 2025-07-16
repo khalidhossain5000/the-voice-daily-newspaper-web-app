@@ -47,7 +47,7 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
           const res = await axiosSecure.delete(`/articles/${articleId}`);
           if (res.data.deletedCount > 0) {
             Swal.fire({
-              title: "Log Out Success",
+              title: "Deleted!The article has been deleted.",
               icon: "success",
               buttonsStyling: false,
               color: "black",
@@ -195,7 +195,7 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Decline Reason Modal"
-        className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg mx-auto mt-20"
+        className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg w-[400px] lg:w-[600px] mx-auto mt-20 z-50"
         overlayClassName="fixed inset-0 bg-black/30 flex justify-center items-center"
       >
         <h2 className="text-lg font-bold mb-4 text-red-600">Decline Reason</h2>

@@ -47,7 +47,19 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
         try {
           const res = await axiosSecure.delete(`/articles/${articleId}`);
           if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "The article has been deleted.", "success");
+            Swal.fire({
+              title: "Deleted!The article has been deleted.",
+              icon: "success",
+              buttonsStyling: false,
+              color: "black",
+              customClass: {
+                popup: "error-gradient-bg",
+                confirmButton:
+                  "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+                cancelButton:
+                  "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+              },
+            });
             refetch(); // নতুন করে ডেটা আনো
           } else {
             Swal.fire("Failed!", "Could not delete the article.", "error");
@@ -182,14 +194,14 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Decline Reason Modal"
-        className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg mx-auto mt-20"
+        className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg lg:w-[500px] mx-auto mt-20"
         overlayClassName="fixed inset-0 bg-black/30 flex justify-center items-center"
       >
         <h2 className="text-lg font-bold mb-4 text-red-600">Decline Reason</h2>
         <p className="mb-6">{declineReason || "No reason provided."}</p>
         <button
           onClick={closeModal}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="whitespace-nowrap inline-block px-6 py-2 bg-[#211f54] text-white font-medium rounded-md transition-transform duration-500 ease-out hover:bg-red-600 cursor-pointer hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#16b7cc]"
         >
           Close
         </button>
