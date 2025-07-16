@@ -30,13 +30,22 @@ const Register = () => {
     const password = form.password.value;
     setPasswordError("");
     // password validation start
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
-    if (passwordPattern.test(password) == false) {
-      setPasswordError(
-        "Password Length must be at least 6 characters And Must have an Uppercase and a Lowercase letter"
-      );
-      return;
-    }
+    // const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    // if (passwordPattern.test(password) == false) {
+    //   setPasswordError(
+    //     "Password Length must be at least 6 characters And Must have an Uppercase and a Lowercase letter"
+    //   );
+    //   return;
+    // }
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/;
+
+if (!passwordPattern.test(password)) {
+  setPasswordError(
+    "Password must be at least 6 characters long and include an uppercase letter, a number, and a special character."
+  );
+  return;
+}
+
     // password validation end
     createUser(email, password)
       .then((result) => {
