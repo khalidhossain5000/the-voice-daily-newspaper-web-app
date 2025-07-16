@@ -151,7 +151,16 @@ const AllArticles = () => {
         try {
           const res = await axiosSecure.patch(`/articles/${articleId}/premium`);
           if (res.data.modifiedCount > 0) {
-            Swal.fire("Success!", "Article is now premium.", "success");
+            Swal.fire({
+              title:'Success ! Article Is Now Premium sucess',
+              icon:'success',
+              
+      color: "#ffffff",
+      timer:'2000',
+      customClass: {
+        popup: "make-bg",
+      },
+            });
             refetch();
           } else {
             Swal.fire("Failed", "Could not update article.", "error");
@@ -186,7 +195,16 @@ const AllArticles = () => {
         try {
           const res = await axiosSecure.delete(`/articles/${articleId}`);
           if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "The article has been deleted.", "success");
+            Swal.fire({
+              title:'"Deleted!", "The article has been deleted.", "success"',
+              icon:'success',
+              
+      color: "#ffffff",
+      timer:'2000',
+      customClass: {
+        popup: "error-gradient-bg",
+      },
+            });
             refetch();
           } else {
             Swal.fire("Failed!", "Could not delete the article.", "error");

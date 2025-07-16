@@ -20,7 +20,6 @@ const SubscriptionRoute = ({ children }) => {
 console.log(currentLogInUserDbData);
   const location = useLocation();
   if (isPending) return <Loading />;
-
   
 
   // Check if user has valid premiumTaken

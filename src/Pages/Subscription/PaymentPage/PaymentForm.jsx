@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useQueryClient } from "@tanstack/react-query";
+
 // import useAuth from "../../Hooks/useAuth";
 const PaymentForm = () => {
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
+  const queryClient = useQueryClient();
 
   const [error, setError] = useState("");
   const [processing, setProcessing] = useState(false);
+  // opitonal
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/premium-articles";
   const { amount, duration } = location.state || {};
   //   console.log(duration);
-  const { user, setUser } = useAuth();
-  console.log(user);
+  const { user } = useAuth();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -75,7 +81,7 @@ const PaymentForm = () => {
             title: "Payment Successful!",
             html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
             buttonsStyling: false,
-            color:'#000000',
+            color: "#000000",
             customClass: {
               popup: "premium-bg",
               confirmButton:
@@ -102,8 +108,27 @@ const PaymentForm = () => {
         await axiosSecure.patch(`/users/${user.email}`, {
           premiumInfo: premiumUntil.toISOString(), //
         });
-        setUser({ ...user, premiumTaken: premiumUntil.toISOString() });
+        await queryClient.invalidateQueries(["log-in-user", user.email]);
+        await queryClient.refetchQueries(["log-in-user", user.email]);
+        // Set redirect loader
+
         // alert("user updaed premium");
+        // Show SweetAlert2 loading message
+        await Swal.fire({
+          title: "Redirecting...",
+          text: "You are being redirected to the premium page.",
+          timer: 1500,
+          timerProgressBar: true,
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          didOpen: () => {
+            Swal.showLoading(); // লোডিং স্পিনার
+          },
+        });
+        // NAVIGATE USER
+        navigate(from);
+        // Set redirect loader
+
         //USER PREMIUM FIELD UPDATE ENDS HERE
         // alert("Payment succeeded!");
         // Optional: redirect user or update UI
