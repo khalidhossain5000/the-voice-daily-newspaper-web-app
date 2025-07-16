@@ -4,6 +4,7 @@ import Loading from "../../Shared/Loading/Loading";
 // import LatestNewsCard from './LatestNewsCard';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,7 +35,7 @@ const LatestNews = () => {
                 className="w-full h-48 object-cover rounded-t-lg"
               />
               <div className="p-4 text-white">
-                <h3 className="text-xl font-bold mb-2">{news.articleTitle}</h3>
+                <Link to={`/article/${news?._id}`}><h3 className="text-xl font-bold mb-2">{news.articleTitle}</h3></Link>
                 <p className="text-gray-300">
                   {news.descriptions?.slice(0, 60)}...
                 </p>

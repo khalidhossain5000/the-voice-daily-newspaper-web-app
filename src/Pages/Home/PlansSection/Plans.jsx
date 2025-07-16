@@ -3,6 +3,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router";
 import { IoCheckmark } from "react-icons/io5";
+import { Typewriter } from "react-simple-typewriter";
 
 const Plans = () => {
   return (
@@ -10,7 +11,17 @@ const Plans = () => {
       <div className="">
         <div className="text-center font-semibold py-3 lg:py-12">
           <h1 className="text-5xl">
-            <span className="text-[#211f54] font-bold  tracking-wide">Flexible </span>
+            <span className="text-[#211f54] font-bold  tracking-wide">
+              <Typewriter
+                loop={5}
+                cursor
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+                words={["Flexible", "Adaptive", "Awesome", "Scalable!","Smooth"]}
+              />{" "}
+            </span>
             <span>Plans</span>
           </h1>
           <p className="pt-6 text-xl text-gray-600 font-normal w-full px-8 md:w-full">
