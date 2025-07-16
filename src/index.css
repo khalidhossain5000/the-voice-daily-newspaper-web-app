@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+a.active{
+    border-bottom: 2px solid blue;
+    padding-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+
+
 
 .swiper-button-next,
 .swiper-button-prev {
@@ -15,12 +29,16 @@
 }
 
 
+
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 30px !important;
   font-weight: bold;
   
 }
+
+
 
 
 .swiper-button-next:hover,
