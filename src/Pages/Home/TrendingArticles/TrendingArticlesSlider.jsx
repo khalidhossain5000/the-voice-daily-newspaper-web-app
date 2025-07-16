@@ -53,7 +53,7 @@ const TrendingArticlesSlider = () => {
       {sliderData.map((item, i) => (
         <SwiperSlide key={i}>
           <div
-            className="h-[100vh] lg:h-[calc(100vh-80px)] bg-cover bg-center  text-white p-4 md:p-9 lg:px-24 pb-24"
+            className="z-0 relative h-[100vh] lg:h-[calc(100vh-80px)] bg-cover bg-center  text-white p-4 md:p-9 lg:px-24 pb-24"
             style={{ backgroundImage: `url(${item.bgImage})` }}
           >
             <div className="shadow-xl shadow-blue-300 lg:ml-36 w-full lg:w-[600px] bg-white p-5 md:p-9 rounded-xl ">

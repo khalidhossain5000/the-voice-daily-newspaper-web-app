@@ -6,23 +6,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import useAxios from "../../../Hooks/useAxios";
+import Loading from "../../Shared/Loading/Loading";
+
+
 
 const Publishers = () => {
   const axiosInstance = useAxios();
   const { user } = useAuth();
+
+
+
+
   //getting publisher data from db
-  const { data: publishers = [], isLoading } = useQuery({
+  const { data: publishers = [], isPending } = useQuery({
     queryKey: ["publishers", user?.email],
     queryFn: async () => {
       const res = await axiosInstance.get("/publishers");
       return res.data;
     },
   });
-  if (isLoading) return <h2>Loaidnggggggg......</h2>;
+
+
+
+
+
+
+
+  if (isPending) return <Loading/>
   return (
-    <div className="py-24">
+    <div className="py-24 relative z-0">
       <h2 className="text-center text-3xl font-bold py-12">All Publishers</h2>
-      <div className="my-8 px-4">
+
+      <div className="my-8 px-4" >
         <Swiper
           modules={[Autoplay]}
           spaceBetween={20}
@@ -39,7 +54,10 @@ const Publishers = () => {
         >
           {publishers.map((publisher) => (
             <SwiperSlide key={publisher._id}>
-              <div className="bg-white shadow-md rounded-lg flex flex-col items-center p-4 gap-2">
+              <div 
+            
+              className="publisher-card bg-white shadow-md rounded-lg flex flex-col items-center p-4 gap-2">
+                  
                 <img
                   src={publisher?.publisherPic}
                   alt={publisher.name}
