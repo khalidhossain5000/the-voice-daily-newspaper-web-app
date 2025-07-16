@@ -11,6 +11,7 @@ const NavBar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
+        
         Swal.fire({
           title: "Log Out Success",
 
@@ -26,6 +27,7 @@ const NavBar = () => {
               "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
           },
         });
+        
       })
       .catch((error) => {
         console.log(error);
@@ -87,16 +89,19 @@ const NavBar = () => {
             </div>
           ) : (
             <div className="flex flex-col md:flex-row md:items-center gap-6">
-              
-              <Link to="/auth/login" className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300">
-              Login
-            </Link>
-            
-            <Link to="/auth/register" className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300">
-              Register
-            </Link>
-            
-            
+              <Link
+                to="/auth/login"
+                className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/auth/register"
+                className="px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 text-white font-semibold shadow-lg hover:brightness-110 transition duration-300"
+              >
+                Register
+              </Link>
             </div>
           )}
         </div>

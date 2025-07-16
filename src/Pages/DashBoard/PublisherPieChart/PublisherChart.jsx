@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Chart } from "react-google-charts";
+import Loading from "../../Shared/Loading/Loading";
 const barData = [
   ["Status", "Articles"],
   ["Approved", 20],
@@ -29,7 +30,7 @@ const PublisherChart = () => {
     },
   });
  
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading/>;
   // 🛠️ Pie chart format
   const chartData = [["Publisher", "Articles"]];
   data.forEach((item) => {
