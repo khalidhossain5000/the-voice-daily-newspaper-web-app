@@ -92,7 +92,7 @@ const Subscription = () => {
 
           <button
             type="submit"
-            className="w-full py-4 bg-gradient-to-r from-[#211F54] to-[#433D7E] text-white font-semibold rounded-full shadow-lg hover:opacity-95 transition"
+            className="w-full py-4 bg-gradient-to-r from-[#211F54] to-[#433D7E] text-white font-semibold rounded-full shadow-lg hover:opacity-95 transition cursor-pointer"
           >
             Subscribe Now
           </button>

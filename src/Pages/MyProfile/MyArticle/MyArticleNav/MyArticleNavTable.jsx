@@ -26,7 +26,7 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
   //ARTICLE DELETE REALTED API
   const handleDelete = (articleId) => {
     Swal.fire({
-       title: "Are you sure?",
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -34,7 +34,7 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
       buttonsStyling: false,
-      color:'black',
+      color: "black",
       customClass: {
         popup: "error-gradient-bg",
         confirmButton:
@@ -42,7 +42,6 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
         cancelButton:
           "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
       },
-
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -84,8 +83,8 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
           <span className="relative">Details</span>
         </Link>
       </td>
-      
-        {/* {myArticle.status === "declined" ? (
+
+      {/* {myArticle.status === "declined" ? (
           <>
             <span className="text-red-600 font-semibold">Declined</span>
             <button
@@ -99,24 +98,24 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
           <span className="capitalize">{myArticle?.status}</span>
         )} */}
 
-        <td className="py-4">
-          {myArticle.status === "declined" ? (
-            <div className="flex items-center gap-3">
-              <span className="bg-red-200 text-red-800 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">
-                Declined
-              </span>
+      <td className="py-4">
+        {myArticle.status === "declined" ? (
+          <div className="flex items-center gap-3">
+            <span className="bg-red-200 text-red-800 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">
+              Declined
+            </span>
 
-              <button
-                onClick={() => openModal(myArticle?.declineReason)}
-                className="cursor-pointer relative inline-flex items-center justify-center overflow-hidden rounded-full px-4 py-[6px] text-sm font-medium text-blue-600 border border-blue-600 group hover:text-white transition-all duration-200"
-              >
-                <span className="absolute inset-0 bg-blue-600 transition-all duration-300 ease-out transform scale-x-0 group-hover:scale-x-100 origin-left rounded-full"></span>
-                <span className="relative z-10">View Reason</span>
-              </button>
-            </div>
-          ) : (
-            <span
-              className={`capitalize px-3 py-1 rounded-full text-sm font-semibold
+            <button
+              onClick={() => openModal(myArticle?.declineReason)}
+              className="cursor-pointer relative inline-flex items-center justify-center overflow-hidden rounded-full px-4 py-[6px] text-sm font-medium text-blue-600 border border-blue-600 group hover:text-white transition-all duration-200"
+            >
+              <span className="absolute inset-0 bg-blue-600 transition-all duration-300 ease-out transform scale-x-0 group-hover:scale-x-100 origin-left rounded-full"></span>
+              <span className="relative z-10">View Reason</span>
+            </button>
+          </div>
+        ) : (
+          <span
+            className={`capitalize px-3 py-1 rounded-full text-sm font-semibold
         ${
           myArticle.status === "pending"
             ? "bg-yellow-100 text-yellow-800"
@@ -124,12 +123,11 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
             ? "bg-green-100 text-green-700"
             : "bg-gray-200 text-gray-700"
         }`}
-            >
-              {myArticle?.status}
-            </span>
-          )}
-        </td>
-      
+          >
+            {myArticle?.status}
+          </span>
+        )}
+      </td>
 
       <td>
         {isPremium ? (
@@ -184,8 +182,8 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Decline Reason Modal"
-        className="bg-white p-6 max-w-md mx-auto mt-20 rounded shadow-lg outline-none"
-        overlayClassName="fixed inset-0 bg-black/20 bg-opacity-50 flex justify-center items-start z-50"
+        className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg mx-auto mt-20"
+        overlayClassName="fixed inset-0 bg-black/30 flex justify-center items-center"
       >
         <h2 className="text-lg font-bold mb-4 text-red-600">Decline Reason</h2>
         <p className="mb-6">{declineReason || "No reason provided."}</p>
