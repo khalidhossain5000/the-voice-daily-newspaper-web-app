@@ -51,7 +51,7 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 - @tanstack/react-query
 - axios
 - firebase
-- gsap
+- gsap animations
 - react
 - react-awesome-button
 - react-countup
