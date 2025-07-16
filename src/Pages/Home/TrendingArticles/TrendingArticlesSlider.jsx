@@ -76,7 +76,7 @@ const TrendingArticlesSlider = () => {
                     {/* publsiher and view count show */}
                     <div className="publisherviews py-3 lg:py-5 flex items-center justify-between ">
                       <h3 className="text-[#f00] font-medium flex items-center urbanist text-[13px] md:text-sm"><FaGripfire className="text-xl text-[#f00]"/>{item?.views}Views</h3>
-                      <h3 className="text-gray-700 md:text-xl font-medium urbanist">Publisher : {item?.publisher.label}</h3>
+                      <h3 className="text-gray-700 md:text-xl font-medium urbanist">Publisher : {item?.publisher?.label}</h3>
                     </div>
                   {/* tags show
                   <div className="space-x-6 flex items-center py-6">

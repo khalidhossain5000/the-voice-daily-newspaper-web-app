@@ -3,14 +3,29 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useRole from "../../Hooks/useRole";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
-  const {role,roleLoading}=useRole()
+  const { role, roleLoading } = useRole();
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        alert("Log out success");
+        Swal.fire({
+          title: "Log Out Success",
+
+          icon: "success",
+
+          buttonsStyling: false,
+          color: "black",
+          customClass: {
+            popup: "error-gradient-bg",
+            confirmButton:
+              "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+            cancelButton:
+              "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+          },
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -25,21 +40,21 @@ const NavBar = () => {
         <NavLink to="/add-article">Add Articles</NavLink>
       </li>
       <li>
-        <NavLink to='/subscription'>Subscription</NavLink>
+        <NavLink to="/subscription">Subscription</NavLink>
       </li>
       {!roleLoading && role === "admin" && (
-  <li>
-    <NavLink to='/dashboard'>Dashboard (C)</NavLink>
-  </li>
-)}
+        <li>
+          <NavLink to="/dashboard">Dashboard (C)</NavLink>
+        </li>
+      )}
       <li>
-        <NavLink to='/my-articles'>My Articles</NavLink>
+        <NavLink to="/my-articles">My Articles</NavLink>
       </li>
       <li>
-        <NavLink to='/premium-articles'>Premium Articles(C)</NavLink>
+        <NavLink to="/premium-articles">Premium Articles(C)</NavLink>
       </li>
       <li className="inter">
-        <NavLink to='/allArticles'>All Articles(C)</NavLink>
+        <NavLink to="/allArticles">All Articles(C)</NavLink>
       </li>
     </>
   );
@@ -48,21 +63,25 @@ const NavBar = () => {
     <div className="bg-white py-6 shadow-xl">
       <div className="hidden md:flex items-center">
         <div className="links max-w-7xl mx-auto">
-          <ul className="flex items-center gap-3 text-[17px] font-semibold text-[#0b0f32] inter">{links}</ul>
+          <ul className="flex items-center gap-3 text-[17px] font-semibold text-[#0b0f32] inter">
+            {links}
+          </ul>
         </div>
         <div className="auth max-w-7xl mx-auto">
           {user ? (
             <div className="flex items-center gap-6">
-              
-                <NavLink to='/my-profile'>
-                  <img
-                    src={user?.photoURL}
-                    className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
-                    alt=""
-                  />
-                </NavLink>
-              
-              <button onClick={handleLogOut} className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md">
+              <NavLink to="/my-profile">
+                <img
+                  src={user?.photoURL}
+                  className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
+                  alt=""
+                />
+              </NavLink>
+
+              <button
+                onClick={handleLogOut}
+                className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md"
+              >
                 Log Out
               </button>
             </div>
@@ -95,23 +114,24 @@ const NavBar = () => {
               </ul>
             </div>
             <div className="">
-              {user ?  <div className="flex items-center gap-6">
-              
-                <NavLink to='/my-profile'>
-                  <img
-                    src={user?.photoURL}
-                    className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
-                    alt=""
-                  />
-                </NavLink>
-              
-              <button onClick={handleLogOut} className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md">
-                Log Out
-              </button>
-            </div>
-                
-               
-               : (
+              {user ? (
+                <div className="flex items-center gap-6">
+                  <NavLink to="/my-profile">
+                    <img
+                      src={user?.photoURL}
+                      className="w-12 lg:w-16 lg:h-16 h-12 rounded-full"
+                      alt=""
+                    />
+                  </NavLink>
+
+                  <button
+                    onClick={handleLogOut}
+                    className="px-6 py-3 urbanist text-white rounded-sm shadow-xl font-bold text-xl bg-[#04c018] hover:bg-[#04c01810] hover:text-black cursor-pointer btn-md"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              ) : (
                 <Link to="/auth/login" className="btn btn-md btn-success">
                   Login
                 </Link>

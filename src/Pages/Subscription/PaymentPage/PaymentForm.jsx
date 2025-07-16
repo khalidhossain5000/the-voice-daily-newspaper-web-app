@@ -103,9 +103,9 @@ const PaymentForm = () => {
           premiumInfo: premiumUntil.toISOString(), //
         });
         setUser({ ...user, premiumTaken: premiumUntil.toISOString() });
-        alert("user updaed premium");
+        // alert("user updaed premium");
         //USER PREMIUM FIELD UPDATE ENDS HERE
-        alert("Payment succeeded!");
+        // alert("Payment succeeded!");
         // Optional: redirect user or update UI
       }
     } catch (err) {

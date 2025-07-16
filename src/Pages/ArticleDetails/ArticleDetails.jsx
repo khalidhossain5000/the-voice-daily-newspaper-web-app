@@ -70,12 +70,12 @@ console.log(article?.publisher?.label);
      
 
       <div className="setails bg-[#031d35] p-3 lg:p-20 ">
-        <div className=" lg:p-12 max-w-7xl mx-auto gap-3 lg:gap-6 text-white flex flex-col lg:flex-row lg:h-96">
+        <div className=" lg:p-12 max-w-7xl mx-auto gap-3 lg:gap-6 text-white flex flex-col lg:flex-row ">
           <div className="lg:flex-2 descripitosn bg-[#1c2c59] p-6 w-full">
             <h2 className="text-xl font-bold  mb-3 text-cyan-400">Descriptions : </h2>
             <p className="text-xl">{article?.descriptions}</p>
           </div>
-          <div className="lg:flex-1 tagspubs clear-start bg-[#0a2b4a] rounded-md shadow-2xl">
+          <div className="lg:flex-1 tagspubs clear-start bg-[#0a2b4a] rounded-md shadow-2xl max-h-96">
             <div className="tgs p-6 lg:px-9 text-cener">
               <h2 className="text-xl font-bold text-white mb-3">Tags</h2>
 

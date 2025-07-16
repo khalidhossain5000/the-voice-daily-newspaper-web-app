@@ -28,7 +28,7 @@ const user = result.user;
           .post("/users", userInfo)
           .then((res) => {
             console.log(res);
-            alert("data send to mongo")
+            
           })
           .catch((error) => {
             console.log(error);

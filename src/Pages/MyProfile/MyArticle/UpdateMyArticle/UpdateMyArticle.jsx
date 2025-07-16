@@ -10,7 +10,7 @@
 
 // export default UpdateMyArticle;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
@@ -21,6 +21,8 @@ import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loading from "../../../Shared/Loading/Loading";
 import { FiUpload } from "react-icons/fi";
+import toast from "react-hot-toast";
+import { CircleLoader } from "react-spinners";
 const UpdateMyArticle = () => {
   const [articlePic, setArticlePic] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -48,6 +50,7 @@ const UpdateMyArticle = () => {
     register,
     handleSubmit,
     control,
+    setValue
     // formState: { errors },
   } = useForm({
     defaultValues: {
@@ -55,8 +58,10 @@ const UpdateMyArticle = () => {
       tags: [],
     },
   });
+ 
+
   // Fetch article data
-  const { data: article, isLoading: articleLoading } = useQuery({
+  const { data: article, isPending: articleLoading } = useQuery({
     queryKey: ["article", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/articles/${id}`);
@@ -64,7 +69,31 @@ const UpdateMyArticle = () => {
     },
   });
 
+
+
+
+   useEffect(() => {
+  if (article?.tags && article.tags.length > 0) {
+    setValue("tags", article.tags);
+  }
+}, [article, setValue]);
+
+useEffect(() => {
+  if (article?.publisher) {
+    setValue('publisher', article.publisher);
+  }
+}, [article, setValue]);
+
   if (articleLoading) return <Loading />;
+
+
+
+
+
+
+
+
+  
   const onSubmit = (data) => {
     // console.log("this is data", data);
     const updatedArticleData = {
@@ -77,9 +106,21 @@ setUpdateLoading(true)
     axiosSecure
       .patch(`/articles/update/${id}`, updatedArticleData)
       .then((res) => {
-        console.log(res);
-        if (res.data.insertedId) {
-          alert("Article send");
+        
+        if (res) {
+           toast.success(`Article Updated SuccessFully`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #050342,#01c3f4 )"
+          },
+        });
           setUpdateLoading(false)
         }
       })
@@ -191,7 +232,7 @@ setUpdateLoading(true)
               isMulti
               placeholder="Select Tags"
               onChange={(selectedOptions) => field.onChange(selectedOptions)}
-              value={article?.tags}
+              value={field.value}
               className="border border-gray-100 w-full md:w-9/12  mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
              focus:shadow-[0_0_0_4px_rgba(33,31,84,0.2)]
              transition duration-300"
@@ -212,7 +253,7 @@ setUpdateLoading(true)
               options={publisherOptions}
               placeholder="Select Publisher"
               onChange={(selectedOption) => field.onChange(selectedOption)}
-              value={article?.publisher}
+              value={field.value}
               isLoading={isLoading}
               className="border border-gray-100 w-full md:w-9/12  mx-auto p-2 rounded-md placeholder:text-[#211f54] focus:outline-none focus:ring-0
              focus:shadow-[0_0_0_4px_rgba(33,31,84,0.2)]

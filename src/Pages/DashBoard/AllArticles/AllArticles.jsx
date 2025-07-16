@@ -79,7 +79,20 @@ const AllArticles = () => {
   //DECLINE FUNCI
   const handleDeclineSubmit = async () => {
     if (!declineReason.trim()) {
-      alert("Please enter a reason.");
+      Swal.fire({
+        title: "Enter A Reason",
+        icon: "warning",
+        showCancelButton: true,
+        buttonsStyling: false,
+        color: "black",
+        customClass: {
+          popup: "error-gradient-bg",
+          confirmButton:
+            "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+          cancelButton:
+            "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+        },
+      });
       return;
     }
 
@@ -90,14 +103,29 @@ const AllArticles = () => {
       });
 
       if (res.data.modifiedCount > 0) {
-        alert("Article declined successfully.");
+        Swal.fire({
+          title: "Article Declined SuccessFully",
+
+          icon: "success",
+
+          confirmButtonText: "ok",
+          buttonsStyling: false,
+          color: "black",
+          customClass: {
+            popup: "error-gradient-bg",
+            confirmButton:
+              "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+            cancelButton:
+              "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+          },
+        });
         closeDeclineModal();
-        refetch(); // নতুন করে data আনো
+        refetch(); 
       } else {
-        alert("Decline failed.");
+        console.log("Decline failed.");
       }
     } catch (err) {
-      alert("Error occurred during decline.", err);
+      console.log("Error occurred during decline.", err);
     }
   };
 
@@ -107,8 +135,17 @@ const AllArticles = () => {
       title: "Make this article premium?",
       icon: "question",
       showCancelButton: true,
+      color: "#ffffff",
       confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
+      buttonsStyling: false,
+      customClass: {
+        popup: "make-bg",
+        confirmButton:
+          "bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 hover:bg-yellow-500  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+        cancelButton:
+          "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -135,6 +172,15 @@ const AllArticles = () => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
+      buttonsStyling: false,
+      color: "black",
+      customClass: {
+        popup: "error-gradient-bg",
+        confirmButton:
+          "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+        cancelButton:
+          "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -278,17 +324,18 @@ const AllArticles = () => {
                     >
                       Make Premium
                     </button> */}
-                    {
-                      article?.isPremium ? <h2 className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-md text-black font-bold cursor-not-allowed rounded-xl text-center">already Premium</h2> : <button
-                      onClick={() => handleMakePremium(article._id)}
-                      className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-md hover:scale-105 transition duration-200 cursor-pointer"
-                    >
-                      Make Premium
-                    </button>
-                    }
-
-
-
+                    {article?.isPremium ? (
+                      <h2 className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-md text-black font-bold cursor-not-allowed rounded-xl text-center">
+                        already Premium
+                      </h2>
+                    ) : (
+                      <button
+                        onClick={() => handleMakePremium(article._id)}
+                        className="bg-gradient-to-r from-yellow-500 via-yellow-500 to-yellow-600 text-black text-xs font-bold px-4 py-1 rounded-full shadow-md hover:scale-105 transition duration-200 cursor-pointer"
+                      >
+                        Make Premium
+                      </button>
+                    )}
                   </div>
                 </td>
               </tr>
@@ -330,24 +377,30 @@ const AllArticles = () => {
           isOpen={modalOpen}
           onRequestClose={closeDeclineModal}
           contentLabel="Decline Article"
-          className="p-6 bg-white rounded shadow-lg max-w-md mx-auto mt-20"
-          overlayClassName="fixed inset-0 bg-black/20 bg-opacity-40 flex justify-center items-start"
+          className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg mx-auto mt-20"
+          overlayClassName="fixed inset-0 bg-black/30 flex justify-center items-center"
         >
           <h2 className="text-xl font-bold mb-2">
             Decline: {selectedArticle?.articleTitle}
           </h2>
           <textarea
-            rows={4}
-            className="textarea textarea-bordered w-full mb-4"
+            rows={3}
+            className="border w-full md:w-full rounded-xl  shadow-sm my-3 p-6 mx-auto"
             placeholder="Write decline reason..."
             value={declineReason}
             onChange={(e) => setDeclineReason(e.target.value)}
           />
           <div className="flex justify-end gap-4">
-            <button className="btn" onClick={closeDeclineModal}>
+            <button
+              className="bg-red-700 hover:bg-red-800 text-white text-xs font-semibold uppercase px-4 py-2 rounded-full shadow-sm hover:scale-105   transition duration-200 cursor-pointer"
+              onClick={closeDeclineModal}
+            >
               Cancel
             </button>
-            <button className="btn btn-error" onClick={handleDeclineSubmit}>
+            <button
+              className="bg-[#211F54] text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 cursor-pointer hover:scale-105"
+              onClick={handleDeclineSubmit}
+            >
               Submit
             </button>
           </div>

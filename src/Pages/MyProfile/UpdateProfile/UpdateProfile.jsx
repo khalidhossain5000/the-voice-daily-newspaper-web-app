@@ -4,11 +4,13 @@ import Loading from "../../Shared/Loading/Loading";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FiUpload } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const UpdateProfile = () => {
   const { loading, updateUserProfile, user, setUser } = useAuth();
   const [updatedPic, setUpdatedPic] = useState(user?.photoURL);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [updatingLoader,setUpdatingLoader]=useState(false)
   console.log("updadte dpi", updatedPic);
   const axiosSecure = useAxiosSecure();
   const handleSubmit = async (e) => {
@@ -20,16 +22,34 @@ const UpdateProfile = () => {
       name: updatedName,
       profilePic: updatedPhoto,
     };
+    // UPDATING LOADIN START
+    setUpdatingLoader(true)
     const res = await axiosSecure.patch(
       `/users?email=${user?.email}`,
       updatedDbInfo
     );
+    // UPDAITNG LOADING ENDS
     console.log("res ", res);
     //update user profiel
     updateUserProfile({ displayName: updatedName, photoURL: updatedPhoto })
       .then(() => {
         setUser({ ...user, displayName: updatedName, photoURL: updatedPhoto });
-        alert("user info updated");
+        toast.success(`Profile Updated SuccessFully`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #02AAB0,#00CDAC )"
+          },
+        });
+        // UPDATING LOADIN START
+        setUpdatingLoader(false)
+        // UPDATING LOADIN ENDS
       })
       .catch((error) => {
         console.log("error updated", error);
@@ -106,9 +126,11 @@ const UpdateProfile = () => {
         <div className="text-center">
           <button
           type="submit"
-          className="text-center mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] w-full md:text-xl font-bold text-white cursor-pointer lg:w-9/12 mx-auto"
+          className="text-center mt-3 px-6 lg:px-12 py-2 lg:py-3 rounded-sm shadow-md bg-[#16b7cc] hover:bg-cyan-600 hover:scale-100 w-full md:text-xl font-bold text-white cursor-pointer lg:w-9/12 mx-auto"
         >
-          Update Profile
+          {
+            updatingLoader ? "Updating..........." : "Update Profile"
+          }
         </button>
         </div>
       </form>

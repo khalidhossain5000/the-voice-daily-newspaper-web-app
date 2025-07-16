@@ -32,6 +32,15 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
+      buttonsStyling: false,
+      color:'black',
+      customClass: {
+        popup: "error-gradient-bg",
+        confirmButton:
+          "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+        cancelButton:
+          "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -179,8 +188,8 @@ const MyArticlesTable = ({ myArticle, serial, refetch }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Decline Reason Modal"
-        className="bg-white p-6 max-w-md mx-auto mt-20 rounded shadow-lg outline-none"
-        overlayClassName="fixed inset-0 bg-black/20 bg-opacity-50 flex justify-center items-start z-50"
+          className="p-6 bg-[#e7e9f5] rounded-xl  shadow-lg max-w-lg mx-auto mt-20"
+          overlayClassName="fixed inset-0 bg-black/30 flex justify-center items-center"
       >
         <h2 className="text-lg font-bold mb-4 text-red-600">Decline Reason</h2>
         <p className="mb-6">{declineReason || "No reason provided."}</p>

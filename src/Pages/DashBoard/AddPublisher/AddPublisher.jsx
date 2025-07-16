@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AddPublisher = () => {
   const [publisherPic, setPublisherPic] = useState("");
@@ -19,7 +20,19 @@ const AddPublisher = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data.publisherId) {
-          alert("Publisher added successfully");
+           toast.success(`Publisher Added SuccessFully`, {
+          className: "w-[300px] h-[100px] text-xl font-bold ",
+          removeDelay: 1000,
+          iconTheme: {
+            primary: "#16061e",
+            secondary: "#ef54e2",
+          },
+          style: {
+            border: "1px solid #08086c",
+            color: "white",
+            backgroundImage: "linear-gradient(to bottom right, #050342,#01c3f4 )"
+          },
+        });
         }
       })
       .catch((error) => {

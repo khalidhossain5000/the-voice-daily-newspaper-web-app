@@ -26,13 +26,23 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
   //ARTICLE DELETE REALTED API
   const handleDelete = (articleId) => {
     Swal.fire({
-      title: "Are you sure?",
+       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
+      buttonsStyling: false,
+      color:'black',
+      customClass: {
+        popup: "error-gradient-bg",
+        confirmButton:
+          "bg-gradient-to-r from-yellow-500 text-black  to-amber-600 hover:bg-red-200  text-black font-semibold px-6 py-2 rounded-sm shadow-md  cursor-pointer",
+        cancelButton:
+          "bg-yellow-600 ml-3 text-xl text-black cursor-pointer hover:bg-yellow-500 font-bold px-6 py-2 rounded-xl",
+      },
+
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -74,7 +84,7 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
           <span className="relative">Details</span>
         </Link>
       </td>
-      <td>
+      
         {/* {myArticle.status === "declined" ? (
           <>
             <span className="text-red-600 font-semibold">Declined</span>
@@ -119,7 +129,7 @@ const MyArticleNavTable = ({ myArticle, serial, refetch }) => {
             </span>
           )}
         </td>
-      </td>
+      
 
       <td>
         {isPremium ? (
