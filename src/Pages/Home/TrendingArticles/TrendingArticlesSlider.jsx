@@ -15,11 +15,19 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import useAxios from "../../../Hooks/useAxios";
 import { FaGripfire } from "react-icons/fa";
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
 
 
 const TrendingArticlesSlider = () => {
   const { user } = useAuth();
   const axionsInstance = useAxios()
+
+  const badgeRefs = useRef([]);
+
+
+
+
   const { data: trendingArticles = [], isPending } = useQuery({
     queryKey: ["trendingArticles", user?.email],
     queryFn: async () => {
@@ -30,6 +38,18 @@ const TrendingArticlesSlider = () => {
    
 
  
+useEffect(() => {
+  badgeRefs.current.forEach((badge) => {
+    if (!badge) return;
+    gsap.to(badge, {
+      scale: 1.08,
+      duration: 1.2,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  });
+}, [trendingArticles]); // ডাটা লোড হলে animate
 
 
   if (isPending) return <Loading />;
@@ -56,11 +76,38 @@ const TrendingArticlesSlider = () => {
             className="z-0 relative h-[100vh] lg:h-[calc(100vh-80px)] bg-cover bg-center  text-white p-4 md:p-9 lg:px-24 pb-24"
             style={{ backgroundImage: `url(${item.bgImage})` }}
           >
-            <div className="shadow-xl shadow-blue-300 lg:ml-36 w-full lg:w-[600px] bg-white p-5 md:p-9 rounded-xl ">
+            <div className="shadow-xl lg:ml-36 w-full lg:w-[600px] bg-white p-5 md:p-9 rounded-md ">
+{/* 
               <div className="w-22 badgete bg-red-600 shadow-2xl rounded-xl p-1 lg:max-w-36 text-center">
+
                 <h2 className="lg:text-xl font-medium inter md:font-bold">Trending</h2>
                 
-              </div>
+              </div> */}
+
+          <div
+          ref={(el) => (badgeRefs.current[i] = el)}
+          className="w-22 badge bg-red-600 shadow-2xl rounded-md  p-1 lg:px-3 lg:py-4 lg:w-36 text-center relative overflow-hidden"
+        >
+         
+          <h2 className="lg:text-xl font-medium inter md:font-bold text-white z-10 relative">
+            Trending
+          </h2>
+        </div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+              
               <div className="crd">
                   <div className="author-info text-gray-600 flex justify-between md:justify-between gap-3 py-2 md:py-3">
                     <p className="md:text-xl font-medium md:font-bold">{item?.createdAt.split('T')[0]}</p>
