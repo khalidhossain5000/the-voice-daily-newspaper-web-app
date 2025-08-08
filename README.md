@@ -40,6 +40,14 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 - Integration of Google Charts in the admin dashboard
 - Trending Article
 
+## Main Technologies Used
+
+- **Frontend:** React, Tailwind CSS, HTML5, JavaScript (ES6+)
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** JWT, OAuth2
+- **Testing:** Jest, React Testing Library
+- **Deployment:** Vercel, Docker
+
 
 ## Npm Packages :
 
