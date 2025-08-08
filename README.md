@@ -8,17 +8,13 @@ The News Daily is a modern full-stack newspaper website designed to deliver a se
 With a focus on delivering categorized news enriched by tags and publisher details, it offers premium content access to subscribers and robust content management tools for administrators.
 
 
-
-
 ## 🚀🚀 Live Site :
- https://the-voice-daily.netlify.app/ 
+ https://assignment-12-newspaper-full-web-app.netlify.app/
 
  ## Admin Login Info :
 
  E-mail: newspaper@admin.com
-
  PassWord: 123456
-
 
 # Installation & Setup Guide
 
