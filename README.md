@@ -19,6 +19,8 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 
 
 
+
+
 # Installation & Setup Guide
 
 ### Prerequisites
@@ -30,6 +32,17 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 
 ---
 ## Steps to Run Locally
+
+### 1. **Download or Clone the Project**
+
+You can either:
+
+- **Download ZIP**
+  - Click the green **“Code”** button in the GitHub repository
+  - Select **“Download ZIP”**
+  - Extract the ZIP file to your desired location
+
+# OR 
 
 ### 1. **Clone the repository**
 ```bash
