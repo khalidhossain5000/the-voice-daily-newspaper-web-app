@@ -42,11 +42,9 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 
 ## Main Technologies Used
 
-- **Frontend:** React, Tailwind CSS, HTML5, JavaScript (ES6+)
-- **Backend:** Node.js, Express.js, MongoDB
-- **Authentication:** JWT, OAuth2
-- **Testing:** Jest, React Testing Library
-- **Deployment:** Vercel, Docker
+- **Frontend:** React, Tailwind CSS, Firebase,Firebase Authentications,TanStack Query
+- **Backend:** Node.js, Express.js, MongoDB,Cors
+- **Deployment:** Vercel, Netlify
 
 
 ## Npm Packages :
