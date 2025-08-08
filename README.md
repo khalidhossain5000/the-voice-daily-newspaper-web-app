@@ -26,7 +26,7 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 *(Prerequisites means the things you need to have or prepare before you can run the project)*
 
 - **Node.js** (version 16 or above) — [Download here](https://nodejs.org/)  
-- **npm** (comes with Node.js) or **Yarn** package manager — [Yarn info](https://yarnpkg.com/)  
+- **npm** (comes with Node.js)
 - A **Firebase project** with Authentication enabled (Email/Google sign-in)
 
 ---
