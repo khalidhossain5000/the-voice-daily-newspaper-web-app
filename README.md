@@ -19,7 +19,8 @@ With a focus on delivering categorized news enriched by tags and publisher detai
 
 
 ## Screenshot
-![The Voice - Screenshot](https://i.ibb.co.com/zhzrGP3V/newspaper-full-web-app-netlify-app-2025-08-08-17-56-54.png)
+
+<img src='https://i.ibb.co.com/zhzrGP3V/newspaper-full-web-app-netlify-app-2025-08-08-17-56-54.png'/>
 
 
 # Installation & Setup Guide
